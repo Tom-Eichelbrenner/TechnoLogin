@@ -15,58 +15,63 @@
     {% endblock %}
 </head>
 <body>
-<nav class="py-2 bg-dark border-bottom">
-    <div class="container d-flex flex-wrap">
-        <div class="dropdown">
-            <a class="nav nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false">
+<nav class="py-2 has-background-black has-text-white-ter">
+    <div class="is-flex flex-wrap justify-between container navbar-start" style="z-index: 100;">
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
                 Mon Blog
             </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdminDashboard">
-                <li><a class="dropdown-item" href="{{ path('admin') }}">Tableau de bord</a></li>
-                <li><a class="dropdown-item" href="#">Menus</a></li>
+            <ul class="navbar-dropdown">
+                <li><a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a></li>
+                <li><a class="navbar-item" href="#">Menus</a></li>
             </ul>
         </div>
-        <div class="dropdown">
-            <a class="nav nav-link dropdown-toggle text-white" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false">
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
                 Ajouter
             </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAdminAdd">
-                <li><a class="dropdown-item" href="#">Article</a></li>
-                <li><a class="dropdown-item" href="#">Page</a></li>
+            <ul class="navbar-dropdown">
+                <li><a class="navbar-item" href="#">Article</a></li>
+                <li><a class="navbar-item" href="#">Page</a></li>
             </ul>
         </div>
 
     </div>
 </nav>
 
-<div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="{{ path('app_home') }}"
-           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <span class="fs-4">TechnoLogin</span>
-        </a>
+<div class="box">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-start">
+            <a href="{{ path('app_home') }}"
+               class="navbar-item">
+                <h1 class="title is-1">TechnoLogin</h1>
+            </a>
+        </div>
 
-        <ul class="nav nav-pills">
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="#">S'inscrire</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" href="#">Se connecter</a>
-            </li>
+        <ul class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary" href="#">
+                        <strong>Connexion</strong>
+                    </a>
+                    <a class="button is-light" href="#">
+                        Inscription
+                    </a>
+                </div>
+            </div>
         </ul>
-    </header>
+    </nav>
 </div>
 {% block body %}{% endblock %}
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <span class="copyright">
-                © {{ 'now'|date('Y') }} <a href="https://www.technologin.fr" target="_blank">TechnoLogin</a> Tous droits réservés.
-            </span>
-        </div>
-    </footer>
-</div>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            © {{ 'now'|date('Y') }} <a href="https://www.technologin.fr" target="_blank">TechnoLogin</a> Tous droits
+            réservés.
+        </p>
+    </div>
+</footer>
+
+
 </body>
 </html>

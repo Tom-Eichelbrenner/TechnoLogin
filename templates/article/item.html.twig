@@ -1,24 +1,26 @@
 <article class="mb-5">
     <div class="row">
         {% if article.featuredImage %}
-            <div class="col-md-5">
-                <a href="{{ path('article_show', {'slug':article.slug}) }}">
+            <div class="is-three-fifths">
+                <a href="{{ path('article_show', {'slug':article.slug}) }}" class="image">
                     <img src="/uploads/images/{{ article.featuredImage.filename }}"
-                         alt="{{ article.featuredImage.altText }}" loading="lazy" class="img-fluid">
+                         alt="{{ article.featuredImage.altText }}" loading="lazy">
                 </a>
             </div>
         {% endif %}
 
-        <div class="col-md-7">
-            <h2>
-                <a href="{{ path('article_show', {'slug':article.slug}) }}" class="text-decoration-none">
+        <div class="{% if article.featuredImage %}is-two-fifths{% else %}is-full{% endif %}">
+            <h2 class="title">
+                <a href="{{ path('article_show', {'slug':article.slug}) }}" class="has-text-black">
                     {{ article.title }}
                 </a>
             </h2>
-            <p>
+            <p class="subtitle">
                 {{ article.createdAt|date('d M Y') }}
             </p>
-            <p>{{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}</p>
+            <p class="content">
+                {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
+            </p>
 
         </div>
     </div>
