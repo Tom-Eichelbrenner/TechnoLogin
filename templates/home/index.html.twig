@@ -7,8 +7,8 @@
         <div class="columns">
             <div class="column is-three-quarters">
                 <h3 class="title is-3 px-3">Articles récents</h3>
-                <div class="px-3">
-                    {% include 'article/list.html.twig' with {articles} %}
+                <div class="px-3" id="article-list"
+                {% include 'article/list.html.twig' with {articles} %}
                 </div>
             </div>
 
