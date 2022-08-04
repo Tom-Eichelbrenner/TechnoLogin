@@ -7,5 +7,14 @@
     <h1 class="title">{{article.title}}</h1>
     <hr>
     <p class="content">{{article.content|raw}}</p>
+
+    <h2 class="comment-title mt-5">
+        <span id="comment-count">{{article.comments|length}} {% if article.comments|length <= 1 %}commentaire{% else %}commentaires{% endif %}</span>
+    </h2>
+    <hr>
+    <div class="comment-area mb-5">
+        {{ form(comment_form) }}
+    </div>
+
 </div>
 {% endblock %}
