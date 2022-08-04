@@ -1,13 +1,13 @@
 <article class="mb-5">
     <div class="row">
-        <div class="col-md-5">
-            {% if article.featuredImage %}
+        {% if article.featuredImage %}
+            <div class="col-md-5">
                 <a href="{{ path('article_show', {'slug':article.slug}) }}">
                     <img src="/uploads/images/{{ article.featuredImage.filename }}"
                          alt="{{ article.featuredImage.altText }}" loading="lazy" class="img-fluid">
                 </a>
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
 
         <div class="col-md-7">
             <h2>
@@ -18,7 +18,8 @@
             <p>
                 {{ article.createdAt|date('d M Y') }}
             </p>
-                {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
+            <p>{{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}</p>
 
+        </div>
     </div>
 </article>
