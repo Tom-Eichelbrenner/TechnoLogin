@@ -24,7 +24,7 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?Article $article = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'comment')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
@@ -85,4 +85,5 @@ class Comment
 
         return $this;
     }
+
 }

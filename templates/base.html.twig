@@ -42,47 +42,61 @@
 </nav>
 
 <div class="box">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
-            <a href="{{ path('app_home') }}"
-               class="navbar-item">
-                <h1 class="title is-1">TechnoLogin</h1>
-            </a>
-        </div>
-
-        <ul class="navbar-end">
-            {% for menu in menus %}
-                {% if menu.subMenus.count > 0 %}
-                    <li class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#">
-                            {{ menu.name }}
-                        </a>
-                        <ul class="navbar-dropdown">
-                            {% for subMenu in menu.subMenus %}
-                                <li><a class="navbar-item" href="{{ subMenu|menuLink }}">{{ subMenu.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% else %}
-                    <li class="navbar-item">
-                        <a href="{{ menu|menuLink }}">
-                            {{ menu.name }}
-                        </a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary" href="#">
-                        <strong>Connexion</strong>
-                    </a>
-                    <a class="button is-light" href="{{ path('app_register') }}">
-                        Inscription
-                    </a>
-                </div>
+    <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-start">
+                <a href="{{ path('app_home') }}"
+                   class="navbar-item">
+                    <h1 class="title is-1">TechnoLogin</h1>
+                </a>
             </div>
-        </ul>
-    </nav>
+
+            <ul class="navbar-end">
+                {% for menu in menus %}
+                    {% if menu.subMenus.count > 0 %}
+                        <li class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="#">
+                                {{ menu.name }}
+                            </a>
+                            <ul class="navbar-dropdown">
+                                {% for subMenu in menu.subMenus %}
+                                    <li><a class="navbar-item" href="{{ subMenu|menuLink }}">{{ subMenu.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="navbar-item">
+                            <a href="{{ menu|menuLink }}">
+                                {{ menu.name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                <div class="navbar-item">
+                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="buttons">
+                            <a class="button is-primary" href="{{ path('app_login') }}">
+                                <strong>Connexion</strong>
+                            </a>
+                            <a class="button is-light" href="{{ path('app_register') }}">
+                                Inscription
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                {{ app.user.username|capitalize }}
+                            </a>
+                            <ul class="navbar-dropdown">
+                                <li><a class="navbar-item" href="{{ path('user_profile', {'username': app.user.username}) }}">Profil</a></li>
+                                <li><a class="navbar-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </ul>
+        </nav>
+    </div>
 </div>
 {% block body %}{% endblock %}
 <footer class="footer">

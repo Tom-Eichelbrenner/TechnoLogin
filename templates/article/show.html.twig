@@ -12,21 +12,29 @@
             <span id="comment-count">{{ article.comments|length }} </span>{% if article.comments|length <= 1 %} commentaire{% else %}commentaires{% endif %}
         </h2>
         <hr>
-        <div class="comment-area mb-3">
-            {{ form_start(comment_form, {'attr': {'class':'comment-form field'}}) }}
-            {{ form_label(comment_form.content) }}
-            <div class="control pt-3">
-                {{ form_widget(comment_form.content) }}
-            </div>
-            <div class="field is-grouped py-3 is-flex is-justify-content-end is-align-content-end">
-                <div class="control">
-                    {{ form_widget(comment_form.send) }}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="comment-area mb-3">
+                {{ form_start(comment_form, {'attr': {'class':'comment-form field'}}) }}
+                {{ form_label(comment_form.content) }}
+                <div class="control pt-3">
+                    {{ form_widget(comment_form.content) }}
                 </div>
+                <div class="field is-grouped py-3 is-flex is-justify-content-end is-align-content-end">
+                    <div class="control">
+                        {{ form_widget(comment_form.send) }}
+                    </div>
+                </div>
+
+
+                {{ form_end(comment_form) }}
             </div>
-
-
-            {{ form_end(comment_form) }}
-        </div>
+            {% else %}
+            <article class="message is-warning">
+                <div class="message-body">
+                    Vous devez être connecté pour pouvoir commenter.
+                </div>
+            </article>
+        {% endif %}
         <div id="comment-list">
             {% for comment in article.comments %}
                 {% include 'comment/index.html.twig' with [comment] %}
