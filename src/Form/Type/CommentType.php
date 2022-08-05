@@ -19,13 +19,18 @@ class CommentType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'label' => 'Votre commentaire',
+                'label_attr' => array('class' => 'foo'),
                 'attr' => [
                     'rows' => 5,
+                    'class'=> 'textarea'
                 ],
             ])
             ->add('article', HiddenType::class)
             ->add('send', SubmitType::class, [
                 'label' => 'Envoyer',
+                'attr' => [
+                    'class' => 'button is-link'
+                ]
             ]);
 
         $builder->get('article')

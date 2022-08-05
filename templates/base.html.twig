@@ -55,7 +55,7 @@
                 {% if menu.subMenus.count > 0 %}
                     <li class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link" href="#">
-                        {{ menu.name }}
+                            {{ menu.name }}
                         </a>
                         <ul class="navbar-dropdown">
                             {% for subMenu in menu.subMenus %}
@@ -76,7 +76,7 @@
                     <a class="button is-primary" href="#">
                         <strong>Connexion</strong>
                     </a>
-                    <a class="button is-light" href="#">
+                    <a class="button is-light" href="{{ path('app_register') }}">
                         Inscription
                     </a>
                 </div>
