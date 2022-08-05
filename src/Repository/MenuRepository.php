@@ -39,28 +39,22 @@ class MenuRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Menu[] Returns an array of Menu objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Menu[]
+     */
+    public function findAllForTwig()
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.isVisible = true')
+            ->orderBy('m.menuOrder', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Menu
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function getIndexQueryBuilder(string $field): \Doctrine\ORM\QueryBuilder
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.' . $field . ' IS NOT NULL OR (m.page IS NULL AND m.category IS NULL AND m.article IS NULL AND m.link IS NULL)');
+
+    }
 }
