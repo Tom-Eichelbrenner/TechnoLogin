@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Media;
 use App\Entity\Menu;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -50,6 +51,12 @@ class DashboardController extends AbstractDashboardController
                     MenuItem::linkToCrud('Tous les articles', 'fa fa-newspaper', Article::class),
                     MenuItem::linkToCrud('Ajouter un article', 'fa fa-plus', Article::class)->setAction(Crud::PAGE_NEW),
                     MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class),
+                ]);
+
+            yield MenuItem::subMenu('Médias', 'fas fa-images')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Tous les médias', 'fa fa-images', Media::class),
+                    MenuItem::linkToCrud('Ajouter un média', 'fa fa-plus', Media::class)->setAction(Crud::PAGE_NEW),
                 ]);
         }
 
