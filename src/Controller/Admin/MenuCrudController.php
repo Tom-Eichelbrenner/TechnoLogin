@@ -65,12 +65,18 @@ class MenuCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $subMenuIndex = $this->getSubMenuIndex();
-        yield TextField::new('name', 'Titre de la navigation');
-        yield NumberField::new('menuOrder', 'Ordre d\'affichage');
+        yield TextField::new('name', 'Titre de la navigation')
+            ->setRequired(true)
+            ->setHelp('Le titre de la navigation est affiché dans le menu principal.');
+        yield NumberField::new('menuOrder', 'Ordre d\'affichage')
+            ->setHelp('L\'ordre d\'affichage détermine l\'ordre dans lequel les menus sont affichés.');
         yield $this->getFieldFromSubMenuIndex($subMenuIndex)
-            ->setRequired(true);
-        yield BooleanField::new('isVisible', 'Afficher le menu');
-        yield AssociationField::new('subMenus', 'Sous-éléments');
+            ->setRequired(true)
+            ->setHelp('Le lien du menu est le lien vers lequel le menu pointe.');
+        yield BooleanField::new('isVisible', 'Afficher le menu')
+            ->setHelp('Si le menu est caché, il ne sera pas affiché dans le menu principal.');
+        yield AssociationField::new('subMenus', 'Sous-éléments')
+            ->setHelp('Les sous-éléments sont des sous-menus qui sont affichés dans le menu principal.');
     }
 
     private function getFieldNameFromSubMenuIndex(int $subMenuIndex): string

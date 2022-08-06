@@ -15,6 +15,13 @@ class MediaCrudController extends AbstractCrudController
         return Media::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud->setEntityLabelInSingular('Médias')
+            ->setEntityLabelInPlural('Médias');
+        return $crud;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         $mediasDir = $this->getParameter('medias_directory');
@@ -30,7 +37,8 @@ class MediaCrudController extends AbstractCrudController
         $imageField = ImageField::new('filename', 'Média')
             ->setBasePath($uploadsDir)
             ->setUploadDir($mediasDir)
-            ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+            ->setUploadedFileNamePattern('[slug]-[uuid].[extension]')
+            ->setHelp('Le média est une image.');
 
         if (Crud::PAGE_EDIT === $pageName) {
             $imageField->setRequired(false);

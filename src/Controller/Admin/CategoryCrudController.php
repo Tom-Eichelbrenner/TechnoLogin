@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ColorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
@@ -15,15 +16,24 @@ class CategoryCrudController extends AbstractCrudController
         return Category::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud->setEntityLabelInSingular('Catégorie')
+            ->setEntityLabelInPlural('Catégories');
+        return $crud;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            yield TextField::new('name'),
-            yield SlugField::new('slug')
-                ->setTargetFieldName('name'),
-            yield ColorField::new('color'),
-
-
+            yield TextField::new('name', 'Nom')
+                ->setRequired(true)
+                ->setHelp('Le nom de la catégorie.'),
+            yield SlugField::new('slug', 'Slug')
+                ->setTargetFieldName('name')
+                ->setHelp('Le slug est un identifiant unique pour la catégorie.'),
+            yield ColorField::new('color', 'Couleur')
+                ->setHelp('La couleur de la catégorie.'),
         ];
     }
 }
