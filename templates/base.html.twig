@@ -17,6 +17,7 @@
     {% endblock %}
 </head>
 <body>
+{% if is_granted('ROLE_AUTHOR') %}
 <nav class="py-2 has-background-black has-text-white-ter">
     <div class="is-flex flex-wrap justify-between container navbar-start" style="z-index: 100;">
         <div class="navbar-item has-dropdown is-hoverable">
@@ -25,7 +26,9 @@
             </a>
             <ul class="navbar-dropdown">
                 <li><a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li><a class="navbar-item" href="{{ ea_index('MenuCrudController') }}">Menus</a></li>
+                {% endif %}
             </ul>
         </div>
         <div class="navbar-item has-dropdown is-hoverable">
@@ -40,6 +43,7 @@
 
     </div>
 </nav>
+{% endif %}
 
 <div class="box">
     <div class="container">
