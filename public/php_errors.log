@@ -7,3 +7,4 @@
 [05-Aug-2022 17:05:18 Europe/Berlin] 2022-08-05T17:05:18+02:00 [critical] Uncaught Exception: The service "twig" has a dependency on a non-existent service "App/Service/MenuService".
 [06-Aug-2022 13:14:05 Europe/Berlin] 2022-08-06T13:14:05+02:00 [critical] Uncaught Error: syntax error, unexpected token "if"
 [06-Aug-2022 13:47:22 Europe/Berlin] 2022-08-06T13:47:22+02:00 [critical] Uncaught Error: syntax error, unexpected token "return"
+[07-Aug-2022 20:01:15 Europe/Berlin] 2022-08-07T20:01:15+02:00 [critical] Uncaught Exception: An exception occurred in the driver: SQLSTATE[HY000] [2002] Connection refused

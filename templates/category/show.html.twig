@@ -9,7 +9,7 @@
                 <h3 class="title is-3 pb-4 mb-4 is-italic"
                     style="border-bottom: 1px solid #e39e9e">{{ category.name }}</h3>
                 <div id="article-list">
-                    {% include 'article/list.html.twig' with {articles : category.articles} %}
+                    {% include 'article/list.html.twig' with {articles} %}
                 </div>
             </div>
         </div>

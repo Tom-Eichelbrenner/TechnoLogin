@@ -35,8 +35,9 @@ class App {
                 const commentList = document.querySelector('#comment-list');
                 const commentCount = document.querySelector('#comment-count');
                 const commentContent = document.querySelector('#comment-content');
-                commentList.insertAdjacentHTML('beforeend', json.html);
-                commentList.lastElementChild.scrollIntoView({behavior: 'smooth'});
+                // commentList.insertAdjacentHTML('beforeend', json.html);
+                                commentList.insertAdjacentHTML('afterbegin', json.html); //todo its not working
+                // commentList.lastElementChild.scrollIntoView({behavior: 'smooth'});
                 commentCount.innerText = json.numberOfComments;
                 commentContent.value = '';
             }

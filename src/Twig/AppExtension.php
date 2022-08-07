@@ -56,15 +56,21 @@ class AppExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('ea_index', [$this, 'getAdminUrl']),
+            new TwigFunction('ea_gen_url', [$this, 'getAdminUrl']),
         ];
     }
 
-    public function getAdminUrl(string $controller): string
+    public function getAdminUrl(string $controller, ?string $action = null): string
     {
-        return $this->adminUrlGenerator
-            ->setController(self::ADMIN_NAMESPACE . '\\' . $controller)
-            ->generateUrl();
+        $adminGenerator = $this->adminUrlGenerator
+            ->setController(self::ADMIN_NAMESPACE . '\\' . $controller);
+
+        if ($action) {
+            $this->adminUrlGenerator->setAction($action);
+        }
+
+        return $adminGenerator->generateUrl();
+
 
     }
 }
