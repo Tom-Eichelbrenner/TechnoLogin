@@ -21,7 +21,7 @@ class Menu
     #[ORM\Column(nullable: true)]
     private ?int $menuOrder = null;
 
-    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'subMenus')]
+    #[ORM\ManyToMany(targetEntity: self::class)]
     private Collection $subMenus;
 
     #[ORM\Column]

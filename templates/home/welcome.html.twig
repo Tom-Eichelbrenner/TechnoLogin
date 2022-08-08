@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenue</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('Bulma') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<div class="container mt-5">
+    <div class="columns">
+        <div class="column is-full">
+            <div class="box">
+                <h5 class="title">Bienvenue</h5>
+                <p class="subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-header-title">
+                        Informations nécessaires
+                    </h5>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        {{ form_start(welcomeForm) }}
+                        <div class="field">
+                            {{ form_label(welcomeForm.siteName) }}
+                            <div class="control">
+                                {{ form_widget(welcomeForm.siteName) }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            {{ form_label(welcomeForm.username) }}
+                            <div class="control">
+                                {{ form_widget(welcomeForm.username) }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            {{ form_label(welcomeForm.password) }}
+                            <div class="control">
+                                {{ form_widget(welcomeForm.password) }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                {{ form_widget(welcomeForm.submit) }}
+                            </div>
+                        </div>
+                        {{ form_end(welcomeForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

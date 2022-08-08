@@ -22,7 +22,7 @@ class Option
     #[ORM\Column(type: 'text', nullable: true)]
     private $value = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
     /**
@@ -31,7 +31,7 @@ class Option
      * @param string|null $value
      * @param string|null $type
      */
-    public function __construct(?string $label, ?string $name, ?string $value, ?string $type)
+    public function __construct(?string $label, ?string $name, ?string $value, ?string $type = null)
     {
         $this->label = $label;
         $this->name = $name;
