@@ -16,14 +16,29 @@ class Option
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $value = null;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $value = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
+
+    /**
+     * @param string|null $label
+     * @param string|null $name
+     * @param string|null $value
+     * @param string|null $type
+     */
+    public function __construct(?string $label, ?string $name, ?string $value, ?string $type)
+    {
+        $this->label = $label;
+        $this->name = $name;
+        $this->value = $value;
+        $this->type = $type;
+    }
+
 
     public function getId(): ?int
     {
@@ -76,5 +91,10 @@ class Option
         $this->type = $type;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value ?? '';
     }
 }

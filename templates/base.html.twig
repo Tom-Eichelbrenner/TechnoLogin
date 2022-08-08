@@ -1,4 +1,6 @@
 {% set menus = menu_service.findAll %}
+{% set options = option_service.findAll %}
+{% dump(options) %}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,31 +20,31 @@
 </head>
 <body>
 {% if is_granted('ROLE_AUTHOR') %}
-<nav class="py-2 has-background-black has-text-white-ter">
-    <div class="is-flex flex-wrap justify-between container navbar-start" style="z-index: 100;">
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Mon Blog
-            </a>
-            <ul class="navbar-dropdown">
-                <li><a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
-                <li><a class="navbar-item" href="{{ ea_gen_url('MenuCrudController') }}">Menus</a></li>
-                {% endif %}
-            </ul>
-        </div>
-        <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                Ajouter
-            </a>
-            <ul class="navbar-dropdown">
-                <li><a class="navbar-item" href="{{ ea_gen_url('ArticleCrudController','new') }}">Article</a></li>
-                <li><a class="navbar-item" href="{{ ea_gen_url('PageCrudController','new') }}">Page</a></li>
-            </ul>
-        </div>
+    <nav class="py-2 has-background-black has-text-white-ter">
+        <div class="is-flex flex-wrap justify-between container navbar-start" style="z-index: 100;">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Mon Blog
+                </a>
+                <ul class="navbar-dropdown">
+                    <li><a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a class="navbar-item" href="{{ ea_gen_url('MenuCrudController') }}">Menus</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Ajouter
+                </a>
+                <ul class="navbar-dropdown">
+                    <li><a class="navbar-item" href="{{ ea_gen_url('ArticleCrudController','new') }}">Article</a></li>
+                    <li><a class="navbar-item" href="{{ ea_gen_url('PageCrudController','new') }}">Page</a></li>
+                </ul>
+            </div>
 
-    </div>
-</nav>
+        </div>
+    </nav>
 {% endif %}
 
 <div class="box">
@@ -51,7 +53,9 @@
             <div class="navbar-start">
                 <a href="{{ path('app_home') }}"
                    class="navbar-item m-0 p-0">
-                    <h1 class="title is-1">TechnoLogin</h1>
+                    <h1 class="title is-1">
+                        {{ options['blog_title'] }}
+                    </h1>
                 </a>
             </div>
 
@@ -78,21 +82,25 @@
                 {% endfor %}
                 <div class="navbar-item">
                     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <div class="buttons">
-                            <a class="button is-primary" href="{{ path('app_login') }}">
-                                <strong>Connexion</strong>
-                            </a>
+                            <div class="buttons">
+                                <a class="button is-primary" href="{{ path('app_login') }}">
+                                    <strong>Connexion</strong>
+                                </a>
+                        {% if '1' == options['blog_allow_registration'] %}
                             <a class="button is-light" href="{{ path('app_register') }}">
-                                Inscription
-                            </a>
-                        </div>
+                                    Inscription
+                                </a>
+                            </div>
+                        {% endif %}
                     {% else %}
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">
                                 {{ app.user.username|capitalize }}
                             </a>
                             <ul class="navbar-dropdown">
-                                <li><a class="navbar-item" href="{{ path('user_profile', {'username': app.user.username}) }}">Profil</a></li>
+                                <li><a class="navbar-item"
+                                       href="{{ path('user_profile', {'username': app.user.username}) }}">Profil</a>
+                                </li>
                                 <li><a class="navbar-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
                             </ul>
                         </div>
@@ -106,8 +114,8 @@
 <footer class="footer">
     <div class="content has-text-centered">
         <p>
-            © {{ 'now'|date('Y') }} <a href="https://www.technologin.fr" target="_blank">TechnoLogin</a> Tous droits
-            réservés.
+            © {{ 'now'|date('Y') }} <a href="https://www.technologin.fr" target="_blank">TechnoLogin</a>
+            - {{ options['blog_copyright'] }}
         </p>
     </div>
 </footer>

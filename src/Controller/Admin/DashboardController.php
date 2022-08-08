@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Media;
 use App\Entity\Menu;
+use App\Entity\Option;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -60,12 +61,16 @@ class DashboardController extends AbstractDashboardController
                 ]);
         }
 
-        if ($this->isGranted('ROLE_ADMIN')){
+        if ($this->isGranted('ROLE_ADMIN')) {
             yield MenuItem::linkToCrud('Commentaires', 'fa fa-comments', Comment::class);
             yield MenuItem::subMenu('Comptes', 'fas fa-user')
                 ->setSubItems([
                     MenuItem::linkToCrud('Tous les comptes', 'fa fa-users', User::class),
                     MenuItem::linkToCrud('Ajouter un compte', 'fa fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+                ]);
+            yield MenuItem::subMenu('Réglages', 'fas fa-cogs')
+                ->setSubItems([
+                    MenuItem::linkToCrud('Général', 'fa fa-cog', Option::class),
                 ]);
         }
     }
