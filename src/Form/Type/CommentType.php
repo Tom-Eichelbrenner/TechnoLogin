@@ -29,7 +29,7 @@ class CommentType extends AbstractType
             ->add('send', SubmitType::class, [
                 'label' => 'Envoyer',
                 'attr' => [
-                    'class' => 'button is-link'
+                    'class' => 'button is-primary'
                 ]
             ]);
 

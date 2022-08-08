@@ -2,22 +2,26 @@
     <div class="columns">
         {% if article.featuredImage %}
             <div class="column is-three-fifths">
-                <a href="{{ path('article_show', {'slug':article.slug}) }}" class="image">
-                    <img src="/uploads/{{ article.featuredImage.filename }}"
-                         alt="{{ article.featuredImage.altText }}" loading="lazy">
+                <a href="{{ path('article_show', {'slug':article.slug}) }}">
+                    <figure class="figure">
+                        <img src="/uploads/{{ article.featuredImage.filename }}"
+                             alt="{{ article.featuredImage.altText }}" loading="lazy">
+                    </figure>
                 </a>
             </div>
         {% endif %}
 
-        <div class="column {% if article.featuredImage %}is-two-fifths{% else %}is-full{% endif %}">
-            <h2 class="title">
-                <a href="{{ path('article_show', {'slug':article.slug}) }}" class="has-text-black">
-                    {{ article.title }}
-                </a>
-            </h2>
-            <p class="subtitle">
-                {{ article.createdAt|date('d M Y') }}
-            </p>
+        <div class="column {% if article.featuredImage %}is-two-fifths{% else %}is-full{% endif %} is-flex is-flex-direction-column is-justify-content-space-evenly">
+            <div>
+                <h2 class="title">
+                    <a href="{{ path('article_show', {'slug':article.slug}) }}" class="has-text-black">
+                        {{ article.title }}
+                    </a>
+                </h2>
+                <p class="subtitle">
+                    {{ article.createdAt|date('d M Y') }}
+                </p>
+            </div>
             <p class="content">
                 {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
             </p>

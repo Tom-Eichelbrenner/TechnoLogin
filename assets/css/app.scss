@@ -1,29 +1,64 @@
 @charset "UTF-8";
 
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url("https://use.typekit.net/zos7eca.css");
+@import url("https://dev-cats.github.io/code-snippets/JetBrainsMono.css");
 
-// Set your brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
-
-// Update Bulma's global variables
-$family-sans-serif: 'Sora', sans-serif;
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $pink;
-$widescreen-enabled: false;
-$fullhd-enabled: false;
-
-// Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
-$control-border-width: 2px;
-$input-border-color: transparent;
-$input-shadow: none;
-
+$black: hsl(270, 10%, 4%);
+$black-bis: hsl(270, 10%, 12%);
+$black: hsl(270, 10%, 20%);
+$grey-darker: hsl(269, 10%, 48%);
+$grey-dark: hsl(267, 10%, 56%);
+$grey: hsl(270, 10%, 24%);
+$grey-light: hsl(268, 10%, 68%);
+$grey-lighter: hsl(265, 10%, 76%);
+$grey-lightest: hsl(270, 10%, 84%);
+$white-ter: hsl(240, 5%, 96%);
+$white-bis: hsl(240, 5%, 98%);
+$white: hsl(240, 5%, 100%);
+$orange: hsl(46, 54%, 62%);
+$yellow: hsl(87, 68%, 87%);
+$green: hsl(125, 51%, 50%);
+$turquoise: hsl(184, 67%, 49%);
+$blue: hsl(218, 81%, 73%);
+$purple: hsl(279, 97%, 29%);
+$red : hsl(4, 88%, 32%);
 // Import all from bulma
+
+$family-sans-serif: "ibm-plex-sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$family-serif: "ibm-plex-sans-condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$family-monospace: "JetBrainsMono", "Fira Code", monospace;
+
+$postTitleColor: #EF3E36;
+$postContentColor: #320A28;
+$userLinkColor: #3FA7D6;
+
+.post .title{
+    font-family: $family-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: $postTitleColor;
+}
+.post .content{
+    font-family: $family-sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $postContentColor;
+}
+.user_link{
+    font-family: $family-sans-serif;
+    color: $userLinkColor;
+}
 @import "bulma";
+
+.figure{
+    width: 100%;
+    height: auto;
+}
+.figure img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}

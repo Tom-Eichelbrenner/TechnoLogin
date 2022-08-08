@@ -1,9 +1,9 @@
 {% set username = comment.user.username %}
 <div class="comment mb-5" id="comment-{{ comment.id }}">
     <div class="card">
-        <div class="card-content">
+        <div class="card-content content">
             <h5 class="card-title is-flex is-justify-content-space-between">
-                <a href="#">
+                <a href="#" class="user_link">
                     <span>{{ username }}</span>
                 </a>
                 <small class="text-muted">{{ comment.createdAt|date('d M Y à H:i:s') }}</small>
