@@ -1,6 +1,6 @@
 <div class="p-4">
     <h4 class="is-italic is-4">Catégories</h4>
-    <ol style="list-style-type: none;">
+    <ol style="list-style: none">
         {% for category in categories %}
         <li class="is-size-6">
             <a href="{{ path('category_show', {slug: category.slug}) }}">{{ category.name }}</a>

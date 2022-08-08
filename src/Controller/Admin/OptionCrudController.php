@@ -21,6 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\HiddenField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -81,6 +82,13 @@ class OptionCrudController extends AbstractCrudController
                 'label' => 'Valeur',
                 'required' => false,
                 'data' => boolval($value),
+            ]);
+        }
+        if ($type === TextareaType::class) {
+            $formBuilder->add('value', TextareaType::class, [
+                'label' => 'Valeur',
+                'required' => false,
+                'data' => $value,
             ]);
         }
         return $formBuilder;
