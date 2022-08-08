@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="has-text-centered py-5">
+        <h2 class="title">
+            {% block message %}{% endblock %}
+        </h2>
+        <p class="subtitle">
+            {% block description %} {% endblock %}
+        </p>
+    </div>
+
+{% endblock %}

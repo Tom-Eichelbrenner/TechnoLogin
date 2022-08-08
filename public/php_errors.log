@@ -8,3 +8,89 @@
 [06-Aug-2022 13:14:05 Europe/Berlin] 2022-08-06T13:14:05+02:00 [critical] Uncaught Error: syntax error, unexpected token "if"
 [06-Aug-2022 13:47:22 Europe/Berlin] 2022-08-06T13:47:22+02:00 [critical] Uncaught Error: syntax error, unexpected token "return"
 [07-Aug-2022 20:01:15 Europe/Berlin] 2022-08-07T20:01:15+02:00 [critical] Uncaught Exception: An exception occurred in the driver: SQLSTATE[HY000] [2002] Connection refused
+[08-Aug-2022 11:46:52 Europe/Berlin] PHP Fatal error:  Uncaught Symfony\Component\DependencyInjection\Exception\LogicException: Container extension "error_controller" is not registered. in /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/ContainerBuilder.php:214
+Stack trace:
+#0 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/ContainerBuilder.php(425): Symfony\Component\DependencyInjection\ContainerBuilder->getExtension()
+#1 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/YamlFileLoader.php(937): Symfony\Component\DependencyInjection\ContainerBuilder->loadFromExtension()
+#2 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/YamlFileLoader.php(169): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->loadFromExtensions()
+#3 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/YamlFileLoader.php(143): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->loadContent()
+#4 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php(157): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->load()
+#5 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php(85): Symfony\Component\Config\Loader\FileLoader->doImport()
+#6 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/FileLoader.php(66): Symfony\Component\Config\Loader\FileLoader->import()
+#7 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/Configurator/ContainerConfigurator.php(64): Symfony\Component\DependencyInjection\Loader\FileLoader->import()
+#8 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(53): Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator->import()
+#9 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(191): App\Kernel->configureContainer()
+#10 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/ClosureLoader.php(39): App\Kernel->Symfony\Bundle\FrameworkBundle\Kernel\{closure}()
+#11 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/DelegatingLoader.php(40): Symfony\Component\DependencyInjection\Loader\ClosureLoader->load()
+#12 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(199): Symfony\Component\Config\Loader\DelegatingLoader->load()
+#13 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(636): App\Kernel->registerContainerConfiguration()
+#14 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(537): Symfony\Component\HttpKernel\Kernel->buildContainer()
+#15 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(767): Symfony\Component\HttpKernel\Kernel->initializeContainer()
+#16 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(190): Symfony\Component\HttpKernel\Kernel->preBoot()
+#17 /home/jel/Projets/TechnoLogin/vendor/symfony/runtime/Runner/Symfony/HttpKernelRunner.php(35): Symfony\Component\HttpKernel\Kernel->handle()
+#18 /home/jel/Projets/TechnoLogin/vendor/autoload_runtime.php(29): Symfony\Component\Runtime\Runner\Symfony\HttpKernelRunner->run()
+#19 /home/jel/Projets/TechnoLogin/public/index.php(5): require_once('...')
+#20 {main}
+
+Next Symfony\Component\Config\Exception\LoaderLoadException: Container extension "error_controller" is not registered in /home/jel/Projets/TechnoLogin/config/packages/framework.yaml (which is being imported from "/home/jel/Projets/TechnoLogin/src/Kernel.php"). in /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php:172
+Stack trace:
+#0 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php(85): Symfony\Component\Config\Loader\FileLoader->doImport()
+#1 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/FileLoader.php(66): Symfony\Component\Config\Loader\FileLoader->import()
+#2 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/Configurator/ContainerConfigurator.php(64): Symfony\Component\DependencyInjection\Loader\FileLoader->import()
+#3 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(53): Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator->import()
+#4 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(191): App\Kernel->configureContainer()
+#5 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/ClosureLoader.php(39): App\Kernel->Symfony\Bundle\FrameworkBundle\Kernel\{closure}()
+#6 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/DelegatingLoader.php(40): Symfony\Component\DependencyInjection\Loader\ClosureLoader->load()
+#7 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(199): Symfony\Component\Config\Loader\DelegatingLoader->load()
+#8 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(636): App\Kernel->registerContainerConfiguration()
+#9 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(537): Symfony\Component\HttpKernel\Kernel->buildContainer()
+#10 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(767): Symfony\Component\HttpKernel\Kernel->initializeContainer()
+#11 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(190): Symfony\Component\HttpKernel\Kernel->preBoot()
+#12 /home/jel/Projets/TechnoLogin/vendor/symfony/runtime/Runner/Symfony/HttpKernelRunner.php(35): Symfony\Component\HttpKernel\Kernel->handle()
+#13 /home/jel/Projets/TechnoLogin/vendor/autoload_runtime.php(29): Symfony\Component\Runtime\Runner\Symfony\HttpKernelRunner->run()
+#14 /home/jel/Projets/TechnoLogin/public/index.php(5): require_once('...')
+#15 {main}
+  thrown in /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php on line 172
+[08-Aug-2022 11:46:54 Europe/Berlin] PHP Fatal error:  Uncaught Symfony\Component\DependencyInjection\Exception\LogicException: Container extension "error_controller" is not registered. in /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/ContainerBuilder.php:214
+Stack trace:
+#0 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/ContainerBuilder.php(425): Symfony\Component\DependencyInjection\ContainerBuilder->getExtension()
+#1 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/YamlFileLoader.php(937): Symfony\Component\DependencyInjection\ContainerBuilder->loadFromExtension()
+#2 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/YamlFileLoader.php(169): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->loadFromExtensions()
+#3 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/YamlFileLoader.php(143): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->loadContent()
+#4 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php(157): Symfony\Component\DependencyInjection\Loader\YamlFileLoader->load()
+#5 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php(85): Symfony\Component\Config\Loader\FileLoader->doImport()
+#6 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/FileLoader.php(66): Symfony\Component\Config\Loader\FileLoader->import()
+#7 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/Configurator/ContainerConfigurator.php(64): Symfony\Component\DependencyInjection\Loader\FileLoader->import()
+#8 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(53): Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator->import()
+#9 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(191): App\Kernel->configureContainer()
+#10 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/ClosureLoader.php(39): App\Kernel->Symfony\Bundle\FrameworkBundle\Kernel\{closure}()
+#11 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/DelegatingLoader.php(40): Symfony\Component\DependencyInjection\Loader\ClosureLoader->load()
+#12 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(199): Symfony\Component\Config\Loader\DelegatingLoader->load()
+#13 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(636): App\Kernel->registerContainerConfiguration()
+#14 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(537): Symfony\Component\HttpKernel\Kernel->buildContainer()
+#15 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(767): Symfony\Component\HttpKernel\Kernel->initializeContainer()
+#16 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(190): Symfony\Component\HttpKernel\Kernel->preBoot()
+#17 /home/jel/Projets/TechnoLogin/vendor/symfony/runtime/Runner/Symfony/HttpKernelRunner.php(35): Symfony\Component\HttpKernel\Kernel->handle()
+#18 /home/jel/Projets/TechnoLogin/vendor/autoload_runtime.php(29): Symfony\Component\Runtime\Runner\Symfony\HttpKernelRunner->run()
+#19 /home/jel/Projets/TechnoLogin/public/index.php(5): require_once('...')
+#20 {main}
+
+Next Symfony\Component\Config\Exception\LoaderLoadException: Container extension "error_controller" is not registered in /home/jel/Projets/TechnoLogin/config/packages/framework.yaml (which is being imported from "/home/jel/Projets/TechnoLogin/src/Kernel.php"). in /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php:172
+Stack trace:
+#0 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php(85): Symfony\Component\Config\Loader\FileLoader->doImport()
+#1 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/FileLoader.php(66): Symfony\Component\Config\Loader\FileLoader->import()
+#2 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/Configurator/ContainerConfigurator.php(64): Symfony\Component\DependencyInjection\Loader\FileLoader->import()
+#3 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(53): Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator->import()
+#4 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(191): App\Kernel->configureContainer()
+#5 /home/jel/Projets/TechnoLogin/vendor/symfony/dependency-injection/Loader/ClosureLoader.php(39): App\Kernel->Symfony\Bundle\FrameworkBundle\Kernel\{closure}()
+#6 /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/DelegatingLoader.php(40): Symfony\Component\DependencyInjection\Loader\ClosureLoader->load()
+#7 /home/jel/Projets/TechnoLogin/vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php(199): Symfony\Component\Config\Loader\DelegatingLoader->load()
+#8 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(636): App\Kernel->registerContainerConfiguration()
+#9 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(537): Symfony\Component\HttpKernel\Kernel->buildContainer()
+#10 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(767): Symfony\Component\HttpKernel\Kernel->initializeContainer()
+#11 /home/jel/Projets/TechnoLogin/vendor/symfony/http-kernel/Kernel.php(190): Symfony\Component\HttpKernel\Kernel->preBoot()
+#12 /home/jel/Projets/TechnoLogin/vendor/symfony/runtime/Runner/Symfony/HttpKernelRunner.php(35): Symfony\Component\HttpKernel\Kernel->handle()
+#13 /home/jel/Projets/TechnoLogin/vendor/autoload_runtime.php(29): Symfony\Component\Runtime\Runner\Symfony\HttpKernelRunner->run()
+#14 /home/jel/Projets/TechnoLogin/public/index.php(5): require_once('...')
+#15 {main}
+  thrown in /home/jel/Projets/TechnoLogin/vendor/symfony/config/Loader/FileLoader.php on line 172
