@@ -49,6 +49,8 @@ class App {
     openBurger() {
         const burgerIcon = $('#burger');
         const navbarMenu = $('#nav-links');
+        const burgerIcon2 = $('#burger-2');
+        const navbarMenu2 = $('#nav-links-2');
 
         burgerIcon.on('click', () => {
                 navbarMenu.toggleClass('is-active');
@@ -58,6 +60,18 @@ class App {
         $(document).on('click', (e) => {
                 if (!$(e.target).closest('#burger').length) {
                     navbarMenu.removeClass('is-active');
+                }
+            }
+        );
+
+        burgerIcon2.on('click', () => {
+                navbarMenu2.toggleClass('is-active');
+            }
+        );
+
+        $(document).on('click', (e) => {
+                if (!$(e.target).closest('#burger-2').length) {
+                    navbarMenu2.removeClass('is-active');
                 }
             }
         );
