@@ -46,69 +46,59 @@
     </nav>
 {% endif %}
 
-<div class="box">
-    <div class="container">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-start">
-                <a href="{{ path('app_home') }}"
-                   class="navbar-item m-0 p-0">
-                    <h1 class="title is-1">
-                        {{ options['blog_title'] }}
-                    </h1>
-                </a>
-            </div>
-
-            <ul class="navbar-end">
-                {% for menu in menus %}
-                    {% if menu.subMenus.count > 0 %}
-                        <li class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link" href="#">
-                                {{ menu.name }}
-                            </a>
-                            <ul class="navbar-dropdown">
-                                {% for subMenu in menu.subMenus %}
-                                    <li><a class="navbar-item" href="{{ subMenu|menuLink }}">{{ subMenu.name }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% else %}
-                        <li class="navbar-item">
-                            <a href="{{ menu|menuLink }}">
-                                {{ menu.name }}
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-                <div class="navbar-item">
-                    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <div class="buttons">
-                                <a class="button is-primary" href="{{ path('app_login') }}">
-                                    <strong>Connexion</strong>
-                                </a>
-                        {% if '1' == options['blog_allow_registration'] %}
-                            <a class="button is-light" href="{{ path('app_register') }}">
-                                    Inscription
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link name_dropdown">
-                                {{ app.user.username|capitalize }}
-                            </a>
-                            <ul class="navbar-dropdown">
-                                <li><a class="navbar-item"
-                                       href="{{ path('user_profile', {'username': app.user.username}) }}">Profil</a>
-                                </li>
-                                <li><a class="navbar-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
-                            </ul>
-                        </div>
-                    {% endif %}
-                </div>
-            </ul>
-        </nav>
+<nav class="navbar has-shadow is-white">
+    <div class="navbar-brand is-flex is-justify-content-center is-align-items-center">
+        <a href="{{ path('app_home') }}" class="navbar-item is-not-hoverable">
+            <img src="{{ asset('build/images/logo.png') }}" alt="TechnoLogin" style="max-height: 70px;">
+        </a>
+        <a class="navbar-burger is-not-hoverable" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
     </div>
-</div>
+
+    <div class="navbar-menu" id="nav-links">
+        <div class="navbar-start">
+            {% for menu in menus %}
+            {% if menu.subMenus.count > 0 %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    {{ menu.name }}
+                </a>
+                <div class="navbar-dropdown">
+                    {% for subMenu in menu.subMenus %}
+                        <a class="navbar-item" href="{{ subMenu|menuLink }}">
+                            {{ subMenu.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="navbar-end">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="navbar-end">
+                    <a class="navbar-item" href="{{ path('user_profile', {'username': app.user.username}) }}">
+                        Mon profil
+                    </a>
+                    <a class="navbar-item is-danger" href="{{ path('app_logout') }}">
+                        <strong>Déconnexion</strong>
+                    </a>
+                </div>
+            {% else %}
+                <div class="navbar-end">
+                    <a class="navbar-item" href="{{ path('app_login') }}">
+                        Connexion
+                    </a>
+                    <a class="navbar-item" href="{{ path('app_register') }}">
+                        Inscription
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+</nav>
 {% block body %}{% endblock %}
 <footer class="footer">
     <div class="content has-text-centered">

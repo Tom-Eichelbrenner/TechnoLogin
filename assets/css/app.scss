@@ -64,5 +64,9 @@ $userLinkColor: #3FA7D6;
 }
 .name_dropdown{
     border-left: 1px solid #ccc;
-
+}
+.is-not-hoverable{
+    &:hover{
+        background-color: transparent!important;
+    }
 }
