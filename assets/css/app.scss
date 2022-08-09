@@ -1,12 +1,11 @@
 @charset "UTF-8";
 
 // Import a Google Font
-@import url("https://use.typekit.net/zos7eca.css");
-@import url("https://dev-cats.github.io/code-snippets/JetBrainsMono.css");
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 $black: hsl(270, 10%, 4%);
 $black-bis: hsl(270, 10%, 12%);
-$black: hsl(270, 10%, 20%);
+$black-ter: hsl(270, 10%, 20%);
 $grey-darker: hsl(269, 10%, 48%);
 $grey-dark: hsl(267, 10%, 56%);
 $grey: hsl(270, 10%, 24%);
@@ -22,51 +21,149 @@ $green: hsl(125, 51%, 50%);
 $turquoise: hsl(184, 67%, 49%);
 $blue: hsl(218, 81%, 73%);
 $purple: hsl(279, 97%, 29%);
-$red : hsl(4, 88%, 32%);
+$red: hsl(4, 88%, 32%);
 // Import all from bulma
 
-$family-sans-serif: "ibm-plex-sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$family-serif: "ibm-plex-sans-condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$family-monospace: "JetBrainsMono", "Fira Code", monospace;
 
-$postTitleColor: #EF3E36;
-$postContentColor: #320A28;
-$userLinkColor: #3FA7D6;
+$font_title: 'Indie Flower', serif;
+$color_title: #D4C669;
+$font_body: 'Raleway', sans-serif;
+$color_body: #E4D4DC;
+$article_title_color: #DAD1F7;
 
-.post .title{
-    font-family: $family-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: $postTitleColor;
-}
-.post .content{
-    font-family: $family-sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: $postContentColor;
-}
-.user_link{
-    font-family: $family-sans-serif;
-    color: $userLinkColor;
-}
 @import "bulma";
 
-.figure{
+
+.font-1{
+    font-family: $font_title;
+}
+.title-color{
+    color: $color_title!important;
+}
+.article_title_color{
+    color: $article_title_color!important;
+}
+
+body{
+    font-family: $font_body;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: $color_body;
+    background-color: $white;
+}
+
+.user_link {
+  font-family: $font_title;
+}
+body{
+    font-family: $font_body;
+}
+
+.name_dropdown {
+  border-left: 1px solid #ccc;
+}
+
+.is-not-hoverable {
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
+html, body {
+  scroll-behavior: smooth;
+  background-color: $black-bis;
+}
+
+a {
+  color: $blue;
+
+  &:hover {
+    color: $turquoise;
+  }
+}
+
+hr {
+  background-color: $grey-lightest;
+}
+
+.hero {
+  background-color: $black;
+}
+
+.title, .subtitle {
+  color: $white;
+}
+
+.navbar .navbar-item {
+  color: $white-ter;
+}
+
+.is-hoverable:hover .navbar-link {
+  background-color: transparent;
+}
+
+.navbar .navbar-item.is-active {
+  color: $white-bis;
+  font-weight: 700;
+}
+
+.navbar .navbar-item:hover {
+  background: transparent;
+  color: $white-bis;
+}
+
+.navbar .navbar-item a {
+  margin-left: 1rem;
+  color: $white-ter;
+}
+
+.va {
+  display: flex;
+  align-items: center;
+}
+
+.blog-posts {
+  min-height: 100vh;
+  background: $black-ter;
+  padding-top: 4rem;
+  padding-bottom: 10rem;
+}
+
+.post-img {
+  figure {
+    height: 100%;
     width: 100%;
-    height: auto;
-}
-.figure img{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-.name_dropdown{
-    border-left: 1px solid #ccc;
-}
-.is-not-hoverable{
-    &:hover{
-        background-color: transparent!important;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
+  }
+}
+
+.blog-posts article {
+  padding: 1.5rem;
+}
+
+.blog-posts .post-img {
+  border-radius: 6px;
+}
+
+.blog-posts .post .post-title {
+  font-size: 2.2rem;
+}
+
+.blog-posts .post .post-excerpt {
+  line-height: 1.5rem;
+  letter-spacing: .03rem;
+  font-size: 1.2rem;
+}
+
+.blog-posts .post .featured .featured-image img {
+  height: 380px;
+}
+
+.navbar-dropdown {
+  background-color: $black-ter;
 }

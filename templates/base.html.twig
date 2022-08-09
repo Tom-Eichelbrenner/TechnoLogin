@@ -20,71 +20,48 @@
 <body>
 {% if is_granted('ROLE_AUTHOR') %}
     <nav class="navbar has-shadow is-black" role="navigation" aria-label="main navigation" style="z-index: 999">
-        <div class="navbar-brand">
-            <h1 class="navbar-item">
-                Admin
-            </h1>
-            <a class="navbar-burger is-not-hoverable" id="burger-2">
-                <span></span>
-                <span></span>
-                <span></span>
-            </a>
-        </div>
-        <div class="navbar-menu" id="nav-links-2">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        Mon blog
-                    </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a class="navbar-item" href="{{ ea_gen_url('MenuCrudController') }}">Menus</a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        Ajouter
-                    </a>
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{{ ea_gen_url('ArticleCrudController','new') }}">Article</a>
-                        <a class="navbar-item" href="{{ ea_gen_url('PageCrudController','new') }}">Page</a>
-                    </div>
-                </div>
+            <div class="navbar-brand">
+                <h1 class="navbar-item">
+                    Admin
+                </h1>
+                <a class="navbar-burger is-not-hoverable" id="burger-2">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
             </div>
+            <div class="navbar-menu" id="nav-links-2">
+                <div class="navbar-start">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Mon blog
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a class="navbar-item" href="{{ ea_gen_url('MenuCrudController') }}">Menus</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Ajouter
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="{{ ea_gen_url('ArticleCrudController','new') }}">Article</a>
+                            <a class="navbar-item" href="{{ ea_gen_url('PageCrudController','new') }}">Page</a>
+                        </div>
+                    </div>
+                </div>
 
-        </div>
-        {#        <div class="is-flex flex-wrap justify-between container navbar-start" style="z-index: 100;"> #}
-        {#            <div class="navbar-item has-dropdown is-hoverable"> #}
-        {#                <a class="navbar-link"> #}
-        {#                    Mon Blog #}
-        {#                </a> #}
-        {#                <ul class="navbar-dropdown"> #}
-        {#                    <li><a class="navbar-item" href="{{ path('admin') }}">Tableau de bord</a></li> #}
-        {#                    {% if is_granted('ROLE_ADMIN') %} #}
-        {#                        <li><a class="navbar-item" href="{{ ea_gen_url('MenuCrudController') }}">Menus</a></li> #}
-        {#                    {% endif %} #}
-        {#                </ul> #}
-        {#            </div> #}
-        {#            <div class="navbar-item has-dropdown is-hoverable"> #}
-        {#                <a class="navbar-link"> #}
-        {#                    Ajouter #}
-        {#                </a> #}
-        {#                <ul class="navbar-dropdown"> #}
-        {#                    <li><a class="navbar-item" href="{{ ea_gen_url('ArticleCrudController','new') }}">Article</a></li> #}
-        {#                    <li><a class="navbar-item" href="{{ ea_gen_url('PageCrudController','new') }}">Page</a></li> #}
-        {#                </ul> #}
-        {#            </div> #}
-
-        {#        </div> #}
+            </div>
     </nav>
 {% endif %}
 
-<nav class="navbar has-shadow is-white">
+<nav class="navbar is-black has-shadow">
     <div class="navbar-brand is-flex is-justify-content-center is-align-items-center">
-        <a href="{{ path('app_home') }}" class="navbar-item is-not-hoverable">
-            <img src="{{ asset('build/images/logo.png') }}" alt="TechnoLogin" style="max-height: 70px;">
+        <a href="{{ path('app_home') }}" class="navbar-item is-not-hoverable is-white">
+                {{ options['blog_title'] }}
         </a>
         <a class="navbar-burger is-not-hoverable" id="burger">
             <span></span>
@@ -98,7 +75,7 @@
             {% for menu in menus %}
             {% if menu.subMenus.count > 0 %}
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
+                <a class="navbar-link is-black has-background-black">
                     {{ menu.name }}
                 </a>
                 <div class="navbar-dropdown">
@@ -124,18 +101,19 @@
                 </div>
             {% else %}
                 <div class="navbar-end">
-                    <a class="navbar-item" href="{{ path('app_login') }}">
+                    <a class="navbar-item is-not-hoverable" href="{{ path('app_login') }}">
                         Connexion
                     </a>
-                    <a class="navbar-item" href="{{ path('app_register') }}">
+                    <a class="navbar-item is-not-hoverable" href="{{ path('app_register') }}">
                         Inscription
                     </a>
                 </div>
             {% endif %}
         </div>
+    </div>
 </nav>
 {% block body %}{% endblock %}
-<footer class="footer">
+<footer class="footer has-background-black">
     <div class="content has-text-centered">
         <p>
             © {{ 'now'|date('Y') }} <a class="has-text-link" href="https://www.technologin.fr" target="_blank">TechnoLogin</a>

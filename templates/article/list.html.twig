@@ -1,8 +1,28 @@
-{% for article in articles %}
-    <div class="box has-background-white-ter">
-        {% include 'article/item.html.twig' with { article } %}
+<div class="container">
+    <div class="columns">
+        <div class="column is-10 is-offset-1">
+            {% for article in articles %}
+                {% if loop.first %}
+                    <div class="columns featured-post is-multiline">
+                        <div class="column is-12 post">
+                                {% include 'article/item_first.html.twig' with { article } %}
+                        </div>
+                    </div>
+                    <hr>
+                {% endif %}
+            {% endfor %}
+            <div class="columns is-multiline">
+                {% for article in articles %}
+                    {% if loop.index != 1 %}
+                    <div class="column post is-6">
+                        {% include 'article/item.html.twig' with { article } %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
-{% endfor %}
+</div>
 
 <div class="container is-flex is-justify-content-center is-align-items-center">
     {{ knp_pagination_render(articles) }}

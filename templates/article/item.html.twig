@@ -1,31 +1,19 @@
-<article class="mb-5">
-    <div class="columns">
-        {% if article.featuredImage %}
-            <div class="column is-three-fifths">
-                <a href="{{ path('article_show', {'slug':article.slug}) }}">
-                    <figure class="figure">
-                        <img src="/uploads/{{ article.featuredImage.filename }}"
-                             alt="{{ article.featuredImage.altText }}" loading="lazy">
-                    </figure>
-                </a>
-            </div>
-        {% endif %}
-
-        <div class="column {% if article.featuredImage %}is-two-fifths{% else %}is-full{% endif %} is-flex is-flex-direction-column is-justify-content-space-evenly">
-            <div>
-                <h2 class="title">
-                    <a href="{{ path('article_show', {'slug':article.slug}) }}" class="has-text-black">
-                        {{ article.title }}
-                    </a>
-                </h2>
-                <p class="subtitle">
-                    {{ article.createdAt|date('d M Y') }}
-                </p>
-            </div>
-            <p class="content">
-                {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
-            </p>
-
-        </div>
+<article class="columns is-multiline">
+    <div class="column is-12 post-img">
+        <figure>
+            <img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}">
+        </figure>
+    </div>
+    <div class="column is-12 featured-content">
+        <h1 class="title post-title font-1 article_title_color">
+            {{ article.title }}
+        </h1>
+        <p class="post-excerpt">
+            {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
+        </p>
+        <br>
+        <a href="{{ path('article_show', {'slug':article.slug}) }}" class="button is-primary">
+            Lire la suite
+        </a>
     </div>
 </article>
