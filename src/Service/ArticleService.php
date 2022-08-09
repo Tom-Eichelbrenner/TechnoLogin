@@ -11,11 +11,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class ArticleService
 {
     public function __construct(
-        private RequestStack $requestStack,
-        private ArticleRepository $articleRepository,
+        private RequestStack       $requestStack,
+        private ArticleRepository  $articleRepository,
         private PaginatorInterface $paginator,
-        private OptionService $optionService,
-    ){
+        private OptionService      $optionService,
+    )
+    {
     }
 
     /**
@@ -30,6 +31,11 @@ class ArticleService
         $articlesQuery = $this->articleRepository->findForPagination($category);
 
         return $this->paginator->paginate($articlesQuery, $page, $limit);
+    }
+
+    public function getFeaturedArticle()
+    {
+        return $this->articleRepository->findOneBy(['is_featured' => true]);
     }
 
 }

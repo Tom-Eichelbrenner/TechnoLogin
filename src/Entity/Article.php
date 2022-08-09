@@ -44,6 +44,9 @@ class Article implements TimeStampedInterface
     #[ORM\ManyToOne]
     private ?Media $featuredImage = null;
 
+    #[ORM\Column]
+    private ?bool $is_featured = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -199,5 +202,17 @@ class Article implements TimeStampedInterface
     public function __toString(): string
     {
         return $this->title ?? '';
+    }
+
+    public function isIsFeatured(): ?bool
+    {
+        return $this->is_featured;
+    }
+
+    public function setIsFeatured(bool $is_featured): self
+    {
+        $this->is_featured = $is_featured;
+
+        return $this;
     }
 }

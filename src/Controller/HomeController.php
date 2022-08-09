@@ -6,14 +6,15 @@ use App\Entity\Option;
 use App\Entity\User;
 use App\Form\Type\WelcomeType;
 use App\Model\WelcomeModel;
-use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Service\ArticleService;
 use App\Service\OptionService;
 use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,11 +22,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(ArticleService $articleService, CategoryRepository $categoryRepository): Response
+    public function index(ArticleService $articleService, CategoryRepository $categoryRepository, RequestStack $requestStack): Response
     {
+        $request = $requestStack->getMainRequest();
+        $page = $request->query->getInt('page', 1);
+
         return $this->render('home/index.html.twig', [
+            'featured_article' => $articleService->getFeaturedArticle(),
             'articles' => $articleService->getPaginatedArticles(),
             'categories' => $categoryRepository->findAll(),
+            'page' => $page,
         ]);
     }
 

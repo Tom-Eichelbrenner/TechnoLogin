@@ -16,25 +16,6 @@
         </div>
     </section>
     <section class="blog-posts">
-        {% include 'article/list.html.twig' with {articles} %}
+        {% include 'article/list.html.twig' with {"articles": articles, "featured_article" : featured_article, "page" : page} %}
     </section>
-
-    {#    <main class="container"> #}
-    {#        <div class="columns"> #}
-    {#            <div class="column box is-three-quarters"> #}
-    {#                <h3 class="title is-3 px-3">Articles récents</h3> #}
-    {#                <div class="px-3" id="article-list"> #}
-    {#                {% include 'article/list.html.twig' with {articles} %} #}
-    {#                </div> #}
-    {#            </div> #}
-
-
-    {#            <div class="column"> #}
-    {#                <div class="sticky"> #}
-    {#                    {% include 'widget/about.html.twig' %} #}
-    {#                    {% include 'widget/categories.html.twig' %} #}
-    {#                </div> #}
-    {#            </div> #}
-    {#        </div> #}
-    {#    </main> #}
 {% endblock %}
