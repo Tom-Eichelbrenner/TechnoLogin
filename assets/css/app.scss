@@ -31,6 +31,8 @@ $font_body: 'Raleway', sans-serif;
 $color_body: #E4D4DC;
 $article_title_color: #DAD1F7;
 
+@import "bulma";
+
 
 .font-1 {
   font-family: $font_title;
@@ -49,7 +51,7 @@ body {
   font-size: 1.2rem;
   line-height: 1.5;
   color: $color_body;
-  background: $black-ter;
+  background: $black;
 }
 
 .form-box {
@@ -134,6 +136,11 @@ hr {
 .blog-posts {
   min-height: 100vh;
   padding-top: 4rem;
+  border-top: 1px solid $grey-lightest;
+}
+
+.has-black-gradient {
+  background: linear-gradient(0deg, $black 0%, $black 25%, $black-bis 50%, $black 75%, $black 100%);
 }
 
 .post-img {
@@ -183,4 +190,3 @@ hr {
   }
 }
 
-@import "bulma";

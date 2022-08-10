@@ -6,7 +6,7 @@
     <section class="hero is-medium">
         <div class="hero-body">
             <div class="container has-text-centered">
-                <h1 class=" font-1 title-color blog_title is-1 title">
+                <h1 class=" font-1 title-color blog_title title" style="font-size: 6rem;">
                     {{ options['blog_title'] }}
                 </h1>
                 <h2 class="subtitle mt-2">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </section>
-    <section class="blog-posts mb-5">
+    <section class="blog-posts pb-5 has-black-gradient">
         {% include 'article/list.html.twig' with {"articles": articles, "featured_article" : featured_article, "page" : page} %}
     </section>
 {% endblock %}
