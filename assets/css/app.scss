@@ -20,6 +20,7 @@ $yellow: hsl(87, 68%, 87%);
 $green: hsl(125, 51%, 50%);
 $turquoise: hsl(184, 67%, 49%);
 $blue: hsl(218, 81%, 73%);
+$blue-light: hsl(218, 81%, 87%);
 $purple: hsl(279, 97%, 29%);
 $red: hsl(4, 88%, 32%);
 // Import all from bulma
@@ -58,10 +59,11 @@ $article_title_color: #DAD1F7;
   }
 }
 
-:focus{
+:focus {
   outline: none;
 }
-.effect-1~.focus-border{
+
+.effect-1 ~ .focus-border {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -70,10 +72,70 @@ $article_title_color: #DAD1F7;
   background-color: $blue;
   transition: 0.4s;
 }
-.effect-1:focus~.focus-border {
+
+.effect-1:focus ~ .focus-border {
   width: 100%;
   transition: 0.4s;
 }
+
+.article_button {
+  text-decoration: none;
+  position: absolute;
+  border: none;
+  font-size: 14px;
+  font-family: inherit;
+  color: $black;
+  width: 9em;
+  height: 3em;
+  line-height: 2em;
+  text-align: center;
+  background: linear-gradient(90deg,$turquoise, $red, $yellow, $blue);
+  background-size: 300%;
+  border-radius: 4px;
+  z-index: 1;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article_button:hover {
+  animation: ani 8s linear infinite;
+  border: none;
+  color: $black;
+}
+
+@keyframes ani {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 400%;
+  }
+}
+
+.article_button:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg,$turquoise, $red, $yellow, $blue);
+  background-size: 400%;
+  border-radius: 4px;
+  transition: 1s;
+}
+
+.article_button:hover::before {
+  filter: blur(20px);
+}
+
+.article_button:active {
+  background: linear-gradient(90deg,$turquoise, $red, $yellow, $blue);
+}
+
 
 .font-1 {
   font-family: $font_title;
