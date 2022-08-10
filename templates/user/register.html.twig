@@ -32,6 +32,7 @@
                                     {{ form_label(registrationForm.username) }}
                                     <div class="control">
                                         {{ form_widget(registrationForm.username) }}
+                                        <span class="focus-border"></span>
                                     </div>
                                     <div class="form-error">
                                         {{ form_errors(registrationForm.username) }}
@@ -42,6 +43,7 @@
                                     {{ form_label(registrationForm.plainPassword.password) }}
                                     <div class="control">
                                         {{ form_widget(registrationForm.plainPassword.password) }}
+                                        <span class="focus-border"></span>
                                     </div>
                                     {% if registrationForm.plainPassword.password.vars['errors']|length > 0 %}
                                         {% for error in registrationForm.plainPassword.password.vars['errors'] %}
@@ -55,6 +57,7 @@
                                     {{ form_label(registrationForm.plainPassword.confirm) }}
                                     <div class="control">
                                         {{ form_widget(registrationForm.plainPassword.confirm) }}
+                                        <span class="focus-border"></span>
                                     </div>
                                 </div>
 

@@ -21,7 +21,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Nom d\'utilisateur',
                 'label_attr' => array('class' => 'label'),
                 'attr' => [
-                    'class' => 'input',
+                    'class' => 'input effect-1',
                     'placeholder' => 'John Doe'
                 ],
             ])
@@ -40,7 +40,7 @@ class RegistrationFormType extends AbstractType
                     'label' => 'Mot de passe',
                     'label_attr' => array('class' => 'label'),
                     'attr' => [
-                        'class' => 'input',
+                        'class' => 'input effect-1',
                         'placeholder' => '********'
                     ],
                 ],
@@ -48,7 +48,7 @@ class RegistrationFormType extends AbstractType
                     'label' => 'Confirmation',
                     'label_attr' => array('class' => 'label'),
                     'attr' => [
-                        'class' => 'input',
+                        'class' => 'input effect-1',
                         'placeholder' => '********'
                     ],
                 ],

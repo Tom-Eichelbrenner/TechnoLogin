@@ -10,6 +10,7 @@ class App {
     constructor() {
         this.handleCommentForm();
         this.openBurger();
+        this.addClassToTitle();
     }
 
     handleCommentForm() {
@@ -75,5 +76,10 @@ class App {
                 }
             }
         );
+    }
+
+    addClassToTitle() {
+        const title = $('#blog_title')
+        title.addClass('tracking-in-expand-forward-bottom');
     }
 }
