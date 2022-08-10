@@ -60,6 +60,7 @@ body {
   input {
     border-color: $white !important;
     background: $black-bis !important;
+
     &::placeholder {
       color: $grey-light !important;
     }
@@ -172,6 +173,14 @@ hr {
 
 .navbar-dropdown {
   background-color: $black-ter;
+}
+
+.leftbox {
+  border-right: 1px solid $grey-light;
+  @media (max-width: 768px) {
+    border-right: none;
+    border-bottom: 1px solid $grey-light;
+  }
 }
 
 @import "bulma";

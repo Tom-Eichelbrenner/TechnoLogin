@@ -3,50 +3,74 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="columns is-flex is-justify-content-center is-flex-direction-column is-align-items-center">
-            <h1 class="title pt-5">S'inscrire</h1>
-            <div class="column is-half ">
-                {{ form_start(registrationForm) }}
-                <div class="field">
-                    {{ form_label(registrationForm.username) }}
-                    <div class="control">
-                        {{ form_widget(registrationForm.username) }}
-                    </div>
-                    <div class="form-error">
-                        {{ form_errors(registrationForm.username) }}
+    <div class="hero is-fullheight has-shadow">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="columns is-multiline">
+                    <div class="column is-8 is-offset-2 register">
+                        <div class="columns box form-box">
+                            <div class="column left is-flex is-flex-direction-column is-justify-content-center">
+                                <div class="lefbox is-flex is-flex-direction-column is-justify-content-center pr-5 leftbox"
+                                     style="height: 66%">
+
+                                    <h1 class="title is-1">{{ options['blog_title'] }}</h1>
+                                    <h2 class="subtitle colored is-4">Actus, conseils et tutos sur la technologie et le
+                                        développement web.</h2>
+                                    <p>Si vous êtes passionné par la technologie et le développement web, alors
+                                        Technologin est le blog pour vous ! Vous y trouverez des nouvelles, des conseils
+                                        et des tutoriels sur tout ce qui touche à la technologie et au web, afin que
+                                        vous pouvez rester à jour et acquérir de nouvelles compétences.</p>
+                                </div>
+                            </div>
+                            <div class="column right has-text-centered">
+                                <h1 class="title is-4">S'inscrire</h1>
+                                <p class="description">Créez votre compte pour accéder à toutes les fonctionnalités de
+                                    Technologin.</p>
+                                <br>
+                                {{ form_start(registrationForm) }}
+                                <div class="field">
+                                    {{ form_label(registrationForm.username) }}
+                                    <div class="control">
+                                        {{ form_widget(registrationForm.username) }}
+                                    </div>
+                                    <div class="form-error">
+                                        {{ form_errors(registrationForm.username) }}
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    {{ form_label(registrationForm.plainPassword.password) }}
+                                    <div class="control">
+                                        {{ form_widget(registrationForm.plainPassword.password) }}
+                                    </div>
+                                    {% if registrationForm.plainPassword.password.vars['errors']|length > 0 %}
+                                        {% for error in registrationForm.plainPassword.password.vars['errors'] %}
+                                            <p class="help is-danger">
+                                                {{ error.message }}
+                                            </p>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="field">
+                                    {{ form_label(registrationForm.plainPassword.confirm) }}
+                                    <div class="control">
+                                        {{ form_widget(registrationForm.plainPassword.confirm) }}
+                                    </div>
+                                </div>
+
+                                <button class="button is-block is-info is-fullwidth is-medium"
+                                        data-dashlane-rid="27f0e5d90fd4084c" data-form-type=""
+                                        data-dashlane-label="true">
+                                    S'inscrire
+                                </button>
+                                <br>
+                                <small><em>Vous avez déjà un compte ? <a
+                                                href="{{ path('app_login') }}">Connectez-vous</a>.</em></small>
+                                {{ form_end(registrationForm) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    {{ form_label(registrationForm.plainPassword.password) }}
-                    <div class="control">
-                        {{ form_widget(registrationForm.plainPassword.password) }}
-                    </div>
-                    {% if registrationForm.plainPassword.password.vars['errors']|length > 0 %}
-                    {% for error in registrationForm.plainPassword.password.vars['errors'] %}
-                    <p class="help is-danger">
-                        {{ error.message }}
-                    </p>
-                    {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="field">
-                    {{ form_label(registrationForm.plainPassword.confirm) }}
-                    <div class="control">
-                        {{ form_widget(registrationForm.plainPassword.confirm) }}
-                    </div>
-                    {% if registrationForm.plainPassword.confirm.vars['errors']|length > 0 %}
-                    {% for error in registrationForm.plainPassword.confirm.vars['errors'] %}
-                    <p class="help is-danger">
-                        {{ error.message }}
-                    </p>
-                    {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="control is-flex is-justify-content-center">
-                    <button type="submit" class="button is-primary is-medium">S'enregistrer</button>
-                </div>
-                {{ form_end(registrationForm) }}
             </div>
         </div>
     </div>
