@@ -1,13 +1,15 @@
 <div class="container">
     <div class="columns">
         <div class="column is-10 is-offset-1">
-            {% if page == 1 %}
-                <div class="columns featured-post is-multiline">
-                    <div class="column is-12 post">
-                        {% include 'article/item_first.html.twig' with { "article" : featured_article } %}
+            {% if page is defined %}
+                {% if page == 1 %}
+                    <div class="columns featured-post is-multiline">
+                        <div class="column is-12 post">
+                            {% include 'article/item_first.html.twig' with { "article" : featured_article } %}
+                        </div>
                     </div>
-                </div>
-                <hr>
+                    <hr>
+                {% endif %}
             {% endif %}
             <div class="columns is-multiline">
                 {% for article in articles %}

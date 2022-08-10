@@ -3,47 +3,58 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <div class="container post">
-        <h1 class="title font-1">{{ article.title }}</h1>
-        <hr>
-        <div class="content">
-            {{ article.content|raw }}
+    <section class="hero is-medium">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 id="blog_title" class="font-1 title-color title tracking-in-expand-forward-bottom">
+                    {{ article.title }}
+                </h1>
+            </div>
         </div>
-
-        <h2 class="comment-title mt-3">
-            <span id="comment-count">{{ article.comments|length }} </span>{% if article.comments|length <= 1 %} commentaire{% else %}commentaires{% endif %}
-        </h2>
-        <hr>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="comment-area mb-3">
-                {{ form_start(comment_form, {'attr': {'class':'comment-form field'}}) }}
-                {{ form_label(comment_form.content) }}
-                <div class="control pt-3">
-                    {{ form_widget(comment_form.content) }}
-                </div>
-                <div class="field is-grouped py-3 is-flex is-justify-content-end is-align-content-end">
-                    <div class="control">
-                        {{ form_widget(comment_form.send) }}
+    </section>
+    <div class="has-black-gradient">
+        <div class="container post-single p-5 box" style="background-color: transparent">
+            <div class="content">
+                {{ article.content|raw }}
+            </div>
+        </div>
+        <div class="container p-5 box comment-section">
+            <h2 class="comment-title mt-3">
+                <span id="comment-count">{{ article.comments|length }} </span>{% if article.comments|length <= 1 %} commentaire{% else %}commentaires{% endif %}
+            </h2>
+            <hr>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <div class="comment-area mb-3">
+                    {{ form_start(comment_form, {'attr': {'class':'comment-form field'}}) }}
+                    {{ form_label(comment_form.content) }}
+                    <div class="control pt-3">
+                        {{ form_widget(comment_form.content) }}
                     </div>
+                    <div class="field is-grouped py-3 is-flex is-justify-content-end is-align-content-end">
+                        <div class="control">
+                            {{ form_widget(comment_form.send) }}
+                        </div>
+                    </div>
+
+
+                    {{ form_end(comment_form) }}
                 </div>
-
-
-                {{ form_end(comment_form) }}
-            </div>
             {% else %}
-            <article class="message is-warning">
-                <div class="message-body">
-                    Vous devez être connecté pour pouvoir commenter.
+                <article class="message is-warning">
+                    <div class="message-body">
+                        Vous devez être connecté pour pouvoir commenter.
+                    </div>
+                </article>
+            {% endif %}
+            <div id="comment-list">
+                {% for comment in comments %}
+                    {% include 'comment/index.html.twig' with [comment] %}
+                {% endfor %}
+                <div class="container is-flex is-justify-content-center">
+                    {{ knp_pagination_render(comments) }}
                 </div>
-            </article>
-        {% endif %}
-        <div id="comment-list">
-            {% for comment in comments %}
-                {% include 'comment/index.html.twig' with [comment] %}
-            {% endfor %}
-            <div class="container is-flex is-justify-content-center">
-                {{ knp_pagination_render(comments) }}
             </div>
         </div>
+
     </div>
 {% endblock %}

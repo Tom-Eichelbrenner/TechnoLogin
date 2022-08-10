@@ -6,16 +6,15 @@
     </div>
     <div class="column is-5 featured-content va">
         <div>
-            <h1 class="title post-title font-1 article_title_color">
+            <h1 class="title post-title article_title_color">
                 {{ article.title }}
             </h1>
             <p class="post-excerpt">
                 {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
             </p>
             <br>
-            <a href="{{ path('article_show', {'slug':article.slug}) }}"
-               class="article_button">
-                Lire la suite
+            <a href="{{ path('article_show', {'slug':article.slug}) }}" class="button is-primary is-medium">
+                Voir l'article
             </a>
         </div>
     </div>

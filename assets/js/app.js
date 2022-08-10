@@ -34,14 +34,11 @@ class App {
             const json = await response.json();
 
             if (json.code === 'COMMENT_ADDED_SUCCESSFULLY') {
-                console.log(json.message);
                 const commentList = document.querySelector('#comment-list');
                 const commentCount = document.querySelector('#comment-count');
-                const commentContent = document.querySelector('#comment-content');
-                // commentList.insertAdjacentHTML('beforeend', json.html);
+                const commentContent = document.querySelector('#comment_content');
                 commentList.insertAdjacentHTML('afterbegin', json.html); //todo its not working
-                // commentList.lastElementChild.scrollIntoView({behavior: 'smooth'});
-                commentCount.innerText = json.numberOfComments;
+                commentCount.innerText = json.numberOfComments + " ";
                 commentContent.value = '';
             }
         });

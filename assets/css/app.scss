@@ -27,10 +27,69 @@ $red: hsl(4, 88%, 32%);
 
 
 $font_title: 'Indie Flower', serif;
-$color_title: #D4C669;
 $font_body: 'Raleway', sans-serif;
-$color_body: #E4D4DC;
-$article_title_color: #DAD1F7;
+
+$text-color-1: #1B2E55;
+
+$box-color: #EBEBEB;
+$text-color: #001011;
+$heading-color: #157A75;
+$pre-color: #672358;
+
+$body_background-color: $white;
+.post-single {
+  background-color: $box-color !important;
+}
+
+.content {
+  color: $text-color !important;
+
+  h1 {
+    font-family: $font_title !important;
+    color: $heading-color !important;
+  }
+
+  pre {
+    background-color: $white !important;
+    color: $pre-color !important;
+  }
+}
+
+* {
+  font-family: $font_body !important;
+}
+p {
+  color: $text-color-1 !important;
+}
+.navbar, .navbar-item, .navbar-link {
+  color: $text-color !important;
+}
+
+h1, h2, h3, h4, h5 {
+  color: $heading-color !important;
+}
+
+
+.form-box {
+  background-color: $box-color !important;
+
+  p {
+    color: $text-color !important;
+  }
+}
+
+#blog_title {
+  font-family: $font_title !important;
+  color: $heading-color !important;
+}
+.blog-title{
+  font-size: 6rem !important;
+  font-weight: bold !important;
+}
+
+.navbar, .footer {
+  background-color: transparent !important;
+}
 
 @import "bulma";
 /* ----------------------------------------------
@@ -89,7 +148,7 @@ $article_title_color: #DAD1F7;
   height: 3em;
   line-height: 2em;
   text-align: center;
-  background: linear-gradient(90deg,$turquoise, $red, $yellow, $blue);
+  background: linear-gradient(90deg, $turquoise, $red, $yellow, $blue);
   background-size: 300%;
   border-radius: 4px;
   z-index: 1;
@@ -122,7 +181,7 @@ $article_title_color: #DAD1F7;
   right: -5px;
   bottom: -5px;
   z-index: -1;
-  background: linear-gradient(90deg,$turquoise, $red, $yellow, $blue);
+  background: linear-gradient(90deg, $turquoise, $red, $yellow, $blue);
   background-size: 400%;
   border-radius: 4px;
   transition: 1s;
@@ -133,102 +192,24 @@ $article_title_color: #DAD1F7;
 }
 
 .article_button:active {
-  background: linear-gradient(90deg,$turquoise, $red, $yellow, $blue);
+  background: linear-gradient(90deg, $turquoise, $red, $yellow, $blue);
 }
 
 
-.font-1 {
-  font-family: $font_title;
-}
-
-.title-color {
-  color: $color_title !important;
-}
-
-.article_title_color {
-  color: $article_title_color !important;
-}
-
-body {
-  font-family: $font_body;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: $color_body;
-  background: $black;
-}
-
-.form-box {
-  background: $black-ter !important;
-  color: $white !important;
-  border-color: $white !important;
-
-  input {
-    border-color: $white !important;
-    background: $black-bis !important;
-
-    &::placeholder {
-      color: $grey-light !important;
-    }
-  }
-}
 
 .user_link {
   font-family: $font_title;
 }
 
 
-.is-not-hoverable {
-  &:hover {
-    background-color: transparent !important;
-  }
-}
-
-html, body {
-  scroll-behavior: smooth;
-  background-color: $black-bis;
-}
-
-a {
-  color: $blue;
-
-  &:hover {
-    color: $turquoise;
-  }
-}
-
-hr {
-  background-color: $grey-lightest;
-}
-
-.hero {
-  background-color: $black;
-}
-
-.title, .subtitle {
-  color: $white;
-}
-
-.navbar .navbar-item {
-  color: $white-ter;
-}
-
 .is-hoverable:hover .navbar-link {
-  background-color: transparent;
 }
 
 .navbar .navbar-item.is-active {
-  color: $white-bis;
   font-weight: 700;
 }
-
-.navbar .navbar-item:hover {
-  background: transparent;
-  color: $white-bis;
-}
-
 .navbar .navbar-item a {
   margin-left: 1rem;
-  color: $white-ter;
 }
 
 .va {
@@ -243,7 +224,6 @@ hr {
 }
 
 .has-black-gradient {
-  background: linear-gradient(0deg, $black 0%, $black 25%, $black-bis 50%, $black 75%, $black 100%);
 }
 
 .post-img {
@@ -281,10 +261,6 @@ hr {
   height: 380px;
 }
 
-.navbar-dropdown {
-  background-color: $black-ter;
-}
-
 .leftbox {
   border-right: 1px solid $grey-light;
   @media (max-width: 768px) {
@@ -292,4 +268,3 @@ hr {
     border-bottom: 1px solid $grey-light;
   }
 }
-
