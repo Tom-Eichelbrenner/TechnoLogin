@@ -19,7 +19,7 @@
 </head>
 <body>
 {% if is_granted('ROLE_AUTHOR') %}
-    <nav class="navbar has-shadow is-black" role="navigation" aria-label="main navigation" style="z-index: 999">
+    <nav class="navbar is-black" role="navigation" aria-label="main navigation" style="z-index: 999">
             <div class="navbar-brand">
                 <h1 class="navbar-item">
                     Admin
@@ -30,7 +30,7 @@
                     <span></span>
                 </a>
             </div>
-            <div class="navbar-menu" id="nav-links-2">
+            <div class="navbar-menu" id="nav-links-2" style="background-color: #0a090b">
                 <div class="navbar-start">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
@@ -58,7 +58,7 @@
     </nav>
 {% endif %}
 
-<nav class="navbar is-black has-shadow">
+<nav class="navbar is-black">
     <div class="navbar-brand is-flex is-justify-content-center is-align-items-center">
         <a href="{{ path('app_home') }}" class="navbar-item is-not-hoverable is-white">
                 {{ options['blog_title'] }}
@@ -70,7 +70,7 @@
         </a>
     </div>
 
-    <div class="navbar-menu" id="nav-links">
+    <div class="navbar-menu" id="nav-links" style="background-color: #0a090b">
         <div class="navbar-start">
             {% for menu in menus %}
             {% if menu.subMenus.count > 0 %}
@@ -96,7 +96,7 @@
                         Mon profil
                     </a>
                     <a class="navbar-item is-danger" href="{{ path('app_logout') }}">
-                        <strong>Déconnexion</strong>
+                        Déconnexion
                     </a>
                 </div>
             {% else %}

@@ -3,48 +3,59 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="columns is-flex is-justify-content-center is-flex-direction-column is-align-items-center">
-            <h1 class="title pt-5">Se connecter</h1>
-            <div class="column is-half ">
-                <form method="post">
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
-
-                    {% if app.user %}
-                        <div class="mb-3">
-                            You are logged in as {{ app.user.userIdentifier }}, <a
-                                    href="{{ path('app_logout') }}">Logout</a>
-                        </div>
-                    {% endif %}
-
-                    <div class="field">
-                        <label class="label" for="inputUsername">Nom d'utilisateur</label>
-                        <div class="control">
-                            <input class="input" type="text" value="{{ last_username }}" name="_username"
-                                   id="inputUsername"
-                                   autocomplete="username" required autofocus>
-                        </div>
+    <div class="hero is-fullheight has-shadow">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <h3 class="title font-1 title-color">
+                        Connexion
+                    </h3>
+                    <hr>
+                    <p class="subtitle">
+                        Connectez-vous pour accéder à votre compte.
+                    </p>
+                    <div class="box form-box">
+                        <form method="post">
+                            {% if error %}
+                                <div class="notification is-danger">
+                                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                                </div>
+                            {% endif %}
+                            <div class="field">
+                                <label class="label" for="inputUsername">Nom d'utilisateur</label>
+                                <div class="control">
+                                    <input type="text" class="input is-large" value="{{ last_username }}" name="_username" id="inputUsername" autocomplete="username" required autofocus placeholder="John Doe">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="inputPassword" class="label">Mot de passe</label>
+                                <div class="control">
+                                    <input type="password" class="input is-large" name="_password" id="inputPassword" autocomplete="current-password" required placeholder="******">
+                                </div>
+                            </div>
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}"
+                            >
+                            <button class="button is-block is-info is-large is-fullwidth mt-5">
+                                Connexion
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </div>
-                    <div class="field">
-                        <label class="label" for="inputPassword">Mot de passe</label>
-                        <div class="control">
-                            <input type="password" name="_password" id="inputPassword" class="input"
-                                   autocomplete="current-password" required>
-                        </div>
-                    </div>
-                    <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}"
-                    >
-                    <div class="control is-flex is-justify-content-center">
-                        <button class="button is-primary is-medium" type="submit">
-                            Se connecter
-                        </button>
-                    </div>
-
-                </form>
+                </div>
             </div>
         </div>
     </div>
+
+
+    {#                    <div class="control is-flex is-justify-content-center"> #}
+    {#                        <button class="button is-primary is-medium" type="submit"> #}
+    {#                            Se connecter #}
+    {#                        </button> #}
+    {#                    </div> #}
+
+    {#                </form> #}
+    {#            </div> #}
+    {#        </div> #}
+    {#    </div> #}
 {% endblock %}

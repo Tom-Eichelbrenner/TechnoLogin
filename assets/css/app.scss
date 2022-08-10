@@ -31,37 +31,45 @@ $font_body: 'Raleway', sans-serif;
 $color_body: #E4D4DC;
 $article_title_color: #DAD1F7;
 
-@import "bulma";
 
-
-.font-1{
-    font-family: $font_title;
-}
-.title-color{
-    color: $color_title!important;
-}
-.article_title_color{
-    color: $article_title_color!important;
+.font-1 {
+  font-family: $font_title;
 }
 
-body{
-    font-family: $font_body;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: $color_body;
-    background-color: $white;
+.title-color {
+  color: $color_title !important;
+}
+
+.article_title_color {
+  color: $article_title_color !important;
+}
+
+body {
+  font-family: $font_body;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: $color_body;
+  background: $black-ter;
+}
+
+.form-box {
+  background: $black-ter !important;
+  color: $white !important;
+  border-color: $white !important;
+
+  input {
+    border-color: $white !important;
+    background: $black-bis !important;
+    &::placeholder {
+      color: $grey-light !important;
+    }
+  }
 }
 
 .user_link {
   font-family: $font_title;
 }
-body{
-    font-family: $font_body;
-}
 
-.name_dropdown {
-  border-left: 1px solid #ccc;
-}
 
 .is-not-hoverable {
   &:hover {
@@ -124,9 +132,7 @@ hr {
 
 .blog-posts {
   min-height: 100vh;
-  background: $black-ter;
   padding-top: 4rem;
-  padding-bottom: 10rem;
 }
 
 .post-img {
@@ -167,3 +173,5 @@ hr {
 .navbar-dropdown {
   background-color: $black-ter;
 }
+
+@import "bulma";
