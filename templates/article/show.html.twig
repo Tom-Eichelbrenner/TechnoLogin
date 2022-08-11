@@ -3,29 +3,29 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <section class="hero is-medium has-gradient">
+    <section class="hero is-small py-5">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h1 class="font-1 title-color title">
                     {{ article.title }}
                 </h1>
-                <h3>
-                    {% for category in article.categories %}
-                        {% if loop.first %}
-                            <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
-                        {% else %}
-                           - <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
-                        {% endif %}
-                    {% endfor %}
-                </h3>
+{#                <h3>#}
+{#                    {% for category in article.categories %}#}
+{#                        {% if loop.first %}#}
+{#                            <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>#}
+{#                        {% else %}#}
+{#                           - <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </h3>#}
             </div>
         </div>
     </section>
     <div class="mx-5 mt-5">
         <div class="container post-single p-5 box" style="background-color: transparent">
-            <div class="content">
+            <article class="content">
                 {{ article.content|raw }}
-            </div>
+            </article>
         </div>
         <div class="container p-5 box comment-section">
             <h2 class="comment-title mt-3">
@@ -51,7 +51,10 @@
             {% else %}
                 <article class="message is-warning">
                     <div class="message-body">
-                        Vous devez être connecté pour pouvoir commenter.
+                        <p class="">
+                            Vous devez être connecté pour pouvoir poster un commentaire. <a href="{{ path('app_login') }}">Connectez-vous</a>
+                        </p>
+
                     </div>
                 </article>
             {% endif %}
