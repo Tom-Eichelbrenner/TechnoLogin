@@ -9,6 +9,15 @@
                 <h1 class="font-1 title-color title">
                     {{ article.title }}
                 </h1>
+                <h3>
+                    {% for category in article.categories %}
+                        {% if loop.first %}
+                            <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
+                        {% else %}
+                           - <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </h3>
             </div>
         </div>
     </section>

@@ -68,6 +68,12 @@ $body_background-color: $white;
   * {
     color: #C3D5C6 !important;
   }
+  a {
+    color: $blue !important;
+    &:hover {
+      color: $blue-light !important;
+    }
+  }
 
   h1 {
     font-family: $font_title !important;

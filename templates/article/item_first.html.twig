@@ -9,9 +9,9 @@
             <h3 class="post-category">
                 {% for category in article.categories %}
                     {% if loop.first %}
-                        <a href="#">{{ category.name }}</a>
+                        <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
                     {% else %}
-                        <a href="#">{{ category.name }},</a>
+                        - <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
                     {% endif %}
                 {% endfor %}
             </h3>
