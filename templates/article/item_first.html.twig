@@ -6,6 +6,15 @@
     </div>
     <div class="column is-5 featured-content va">
         <div>
+            <h3 class="post-category">
+                {% for category in article.categories %}
+                    {% if loop.first %}
+                        <a href="#">{{ category.name }}</a>
+                    {% else %}
+                        <a href="#">{{ category.name }},</a>
+                    {% endif %}
+                {% endfor %}
+            </h3>
             <h1 class="title post-title article_title_color">
                 {{ article.title }}
             </h1>

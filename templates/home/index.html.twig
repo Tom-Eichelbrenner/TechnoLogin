@@ -3,7 +3,7 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <section class="hero is-medium">
+    <section class="hero is-medium has-gradient">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h1 id="blog_title" class=" font-1 title-color blog_title title" style="font-size: 6rem;">
@@ -15,7 +15,7 @@
             </div>
         </div>
     </section>
-    <section class="blog-posts pb-5 has-black-gradient">
+    <section class="blog-posts pb-5">
         {% include 'article/list.html.twig' with {"articles": articles, "featured_article" : featured_article, "page" : page} %}
     </section>
 {% endblock %}

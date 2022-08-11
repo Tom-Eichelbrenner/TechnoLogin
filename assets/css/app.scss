@@ -37,6 +37,43 @@ $heading-color: #157A75;
 $pre-color: #672358;
 
 $body_background-color: $white;
+.post-category {
+  a {
+    text-decoration: none;
+    position: relative;
+    color: #27344C!important;
+
+    &::before {
+      content: '';
+      background-color: $orange;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 8px;
+      z-index: -1;
+      transition: all 0.3s ease-in-out;
+    }
+    &:hover::before {
+      bottom: 0;
+      height: 100%;
+    }
+  }
+}
+
+.has-gradient {
+  background: rgb(255, 255, 255) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(158, 43, 37, 1) 15%, rgba(179, 89, 84, 1) 85%, rgba(255, 255, 255, 1) 100%) !important;
+
+  * {
+    color: #C3D5C6 !important;
+  }
+
+  h1 {
+    font-family: $font_title !important;
+  }
+}
+
 .post-single {
   background-color: $box-color !important;
 }
@@ -58,9 +95,11 @@ $body_background-color: $white;
 * {
   font-family: $font_body !important;
 }
+
 p {
   color: $text-color-1 !important;
 }
+
 .navbar, .navbar-item, .navbar-link {
   color: $text-color !important;
 }
@@ -73,16 +112,12 @@ h1, h2, h3, h4, h5 {
 .form-box {
   background-color: $box-color !important;
 
-  p {
+  p, small {
     color: $text-color !important;
   }
 }
 
-#blog_title {
-  font-family: $font_title !important;
-  color: $heading-color !important;
-}
-.blog-title{
+.blog-title {
   font-size: 6rem !important;
   font-weight: bold !important;
 }
@@ -165,7 +200,7 @@ h1, h2, h3, h4, h5 {
 
 @keyframes ani {
   0% {
-    background-position: 0%;
+    background-position: 0;
   }
 
   100% {
@@ -196,7 +231,6 @@ h1, h2, h3, h4, h5 {
 }
 
 
-
 .user_link {
   font-family: $font_title;
 }
@@ -208,6 +242,7 @@ h1, h2, h3, h4, h5 {
 .navbar .navbar-item.is-active {
   font-weight: 700;
 }
+
 .navbar .navbar-item a {
   margin-left: 1rem;
 }
@@ -220,11 +255,8 @@ h1, h2, h3, h4, h5 {
 .blog-posts {
   min-height: 100vh;
   padding-top: 4rem;
-  border-top: 1px solid $grey-lightest;
 }
 
-.has-black-gradient {
-}
 
 .post-img {
   figure {

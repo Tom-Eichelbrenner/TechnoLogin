@@ -3,16 +3,16 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <section class="hero is-medium">
+    <section class="hero is-medium has-gradient">
         <div class="hero-body">
             <div class="container has-text-centered">
-                <h1 id="blog_title" class="font-1 title-color title tracking-in-expand-forward-bottom">
+                <h1 class="font-1 title-color title">
                     {{ article.title }}
                 </h1>
             </div>
         </div>
     </section>
-    <div class="has-black-gradient">
+    <div class="mx-5 mt-5">
         <div class="container post-single p-5 box" style="background-color: transparent">
             <div class="content">
                 {{ article.content|raw }}

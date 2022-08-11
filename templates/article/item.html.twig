@@ -5,6 +5,15 @@
         </figure>
     </div>
     <div class="column is-12 featured-content">
+        <h3 class="post-category">
+            {% for category in article.categories %}
+                {% if loop.first %}
+                    <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
+                {% else %}
+                    - <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
+                {% endif %}
+            {% endfor %}
+        </h3>
         <h1 class="title post-title font-1 article_title_color">
             {{ article.title }}
         </h1>
