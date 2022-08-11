@@ -47,10 +47,14 @@ class Article implements TimeStampedInterface
     #[ORM\Column]
     private ?bool $is_featured = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'liked_articles')]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -212,6 +216,30 @@ class Article implements TimeStampedInterface
     public function setIsFeatured(bool $is_featured): self
     {
         $this->is_featured = $is_featured;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        $this->likes->removeElement($like);
 
         return $this;
     }

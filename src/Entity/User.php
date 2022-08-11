@@ -34,10 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comment;
 
+    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'likes')]
+    private Collection $liked_articles;
+
     public function __construct(?string $username = null)
     {
         $this->username = $username;
         $this->comment = new ArrayCollection();
+        $this->liked_articles = new ArrayCollection();
     }
 
 
@@ -136,6 +140,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getLikedArticles(): Collection
+    {
+        return $this->liked_articles;
+    }
+
+    public function addLikedArticle(Article $likedArticle): self
+    {
+        if (!$this->liked_articles->contains($likedArticle)) {
+            $this->liked_articles->add($likedArticle);
+            $likedArticle->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedArticle(Article $likedArticle): self
+    {
+        if ($this->liked_articles->removeElement($likedArticle)) {
+            $likedArticle->removeLike($this);
         }
 
         return $this;
