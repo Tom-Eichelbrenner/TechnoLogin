@@ -13,10 +13,11 @@ class App {
         this.addClassToTitle();
         this.addLike();
         this.removeLike();
+        this.handleProfileForm();
     }
 
     handleCommentForm() {
-        const commentForm = $('form.comment-form');
+        const commentForm = $('formcomment-form');
         if (null === commentForm) {
             return;
         }
@@ -42,6 +43,101 @@ class App {
                 commentList.insertAdjacentHTML('afterbegin', json.html); //todo its not working
                 commentCount.innerText = json.numberOfComments + " ";
                 commentContent.value = '';
+            }
+        });
+    }
+
+    handleProfileForm() {
+        const profileForm = $('form#form-profile');
+        const modal = $('#modal-profile');
+        const notification = $('#notification');
+        const spinner = $('#spinner');
+        const message = $('#message');
+        const modal_cancel = $('#modal-cancel');
+        const modify = $('#modify');
+        const username = $('#username');
+        const modal_close = $('#modal-close');
+        const about = $('#about');
+
+        $('#modal-background').on('click', () => {
+                modal.removeClass('is-active');
+                notification.hide();
+            }
+        );
+        modify.on('click', () => {
+                modal.toggleClass('is-active');
+            }
+        );
+        modal_cancel.on('click', () => {
+            modal.removeClass('is-active');
+            notification.hide();
+        });
+        modal_close.on('click', () => {
+                modal.removeClass('is-active');
+                notification.hide();
+            }
+        );
+
+        spinner.hide();
+        notification.hide();
+        if (null === profileForm) {
+            return;
+        }
+
+        profileForm.on('submit', async (e) => {
+            e.preventDefault();
+            spinner.show();
+            const response = await fetch('/ajax/profile', {
+                method: 'POST',
+                body: new FormData(e.target),
+            })
+
+            const json = await response.json();
+            if (json.code === 'USER_NOT_AUTHENTICATED_FULLY') {
+                spinner.hide();
+                notification.show();
+                notification.addClass('is-danger');
+                notification.removeClass('is-success');
+                message.text(json.message);
+                setTimeout(() => {
+                        notification.hide();
+                    }
+                    , 3000);
+            }
+            if (json.code === 'USERNAME_ALREADY_EXISTS') {
+                spinner.hide();
+                notification.show();
+                notification.addClass('is-danger');
+                notification.removeClass('is-success');
+                message.text(json.message);
+                setTimeout(() => {
+                    notification.hide();
+                }, 3000);
+            }
+            if (json.code === 'PROFILE_UPDATED_SUCCESSFULLY') {
+                spinner.hide();
+                notification.show();
+                notification.addClass('is-success');
+                notification.removeClass('is-danger');
+                message.text(json.message);
+                username.text('@' + json.username);
+                about.text(json.about);
+
+                setTimeout(() => {
+                        notification.hide();
+                        modal.removeClass('is-active');
+                    }
+                    , 2000);
+            }
+            if (json.code === 'PROFILE_UPDATE_FAILED') {
+                spinner.hide();
+                notification.show();
+                notification.addClass('is-danger');
+                notification.removeClass('is-success');
+                message.text(json.message);
+                setTimeout(() => {
+                    notification.hide();
+                }, 3000);
             }
         });
     }
@@ -102,20 +198,39 @@ class App {
                     error: function (data) {
                         let code = data.responseJSON.code;
                         if (code === 'USER_NOT_AUTHENTICATED_FULLY') {
-                            self.triggerModal('Veuillez vous connecter', 'Vous devez être connecté pour liker un article', true)
+                            this.triggerModal('Erreur', 'Vous devez être connecté pour aimer un article', true);
                         }
+                    },
+                    triggerModal(title, message, linkToLogin = false) {
+                        let modal = $('#modal');
+                        let modalTitle = $('#modal-title');
+                        let modalMessage = $('#modal-message');
+                        let modalClose = $('#modal-close');
+                        let modalButton = $('#modal-button');
+                        modalTitle.text(title);
+                        modalMessage.text(message);
+                        if (linkToLogin) {
+                            modalButton.show();
+                        } else {
+                            modalButton.hide();
+                        }
+                        modal.toggleClass('is-active');
+                        modalClose.on('click', () => {
+                                modal.removeClass('is-active');
+                            }
+                        );
                     }
                 });
             }
         );
     }
 
-    removeLike(){
+    removeLike() {
         let remove_like = $('.remove_like');
         let article_id = remove_like.attr('data-article-id');
         let row = $('#row_' + article_id);
         let like_count = $('#like_count')
-            remove_like.on('click', function (e) {
+        remove_like.on('click', function (e) {
                 $.ajax({
                     url: '/ajax/like/' + article_id,
                     method: 'POST',
@@ -128,23 +243,5 @@ class App {
         );
     }
 
-    triggerModal(title, message, linkToLogin = false) {
-        let modal = $('#modal');
-        let modalTitle = $('#modal-title');
-        let modalMessage = $('#modal-message');
-        let modalClose = $('#modal-close');
-        let modalButton = $('#modal-button');
-        modalTitle.text(title);
-        modalMessage.text(message);
-        if (linkToLogin) {
-            modalButton.show();
-        } else {
-            modalButton.hide();
-        }
-        modal.toggleClass('is-active');
-        modalClose.on('click', () => {
-                modal.removeClass('is-active');
-            }
-        );
-    }
+
 }

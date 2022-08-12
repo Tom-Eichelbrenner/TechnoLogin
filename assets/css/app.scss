@@ -274,11 +274,13 @@ $bezier: cubic-bezier(.175, .885, .32, 1.275);
     border-color: currentColor;
   }
 }
-.liked_article{
-  .remove_like, .see_liked{
+
+.liked_article {
+  .remove_like, .see_liked {
     color: $pink;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       color: lighten($pink, 10%);
     }
   }
@@ -332,10 +334,12 @@ $bezier: cubic-bezier(.175, .885, .32, 1.275);
       height: 10px;
       visibility: hidden;
     }
+
     &::before {
       opacity: .6;
       animation: heartFloatSub-1 1s .25s $bezier both;
     }
+
     &::after {
       animation: heartFloatSub-2 1s .15s $bezier both;
       opacity: .75;
@@ -350,10 +354,12 @@ $bezier: cubic-bezier(.175, .885, .32, 1.275);
       height: 8px;
       visibility: hidden;
     }
+
     &::before {
       animation: heartFloatSub-3 1s .25s $bezier both;
       opacity: .25;
     }
+
     &::after {
       animation: heartFloatSub-4 1s .15s $bezier both;
       opacity: .4;
@@ -373,7 +379,9 @@ $bezier: cubic-bezier(.175, .885, .32, 1.275);
 }
 
 @keyframes heartUnlike {
-  50% { transform: scale(.75) ; }
+  50% {
+    transform: scale(.75);
+  }
 }
 
 @keyframes heartFloatMain-1 {
@@ -445,4 +453,12 @@ $bezier: cubic-bezier(.175, .885, .32, 1.275);
   }
 }
 
+#modify {
+  color: $blue;
+  font-size: 1.5rem;
+  transition: all .25s $bezier;
 
+  &:hover {
+    font-size: 1.6rem;
+  }
+}

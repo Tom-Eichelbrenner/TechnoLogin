@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +37,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'likes')]
     private Collection $liked_articles;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $register_date = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $about = null;
 
     public function __construct(?string $username = null)
     {
@@ -168,6 +175,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->liked_articles->removeElement($likedArticle)) {
             $likedArticle->removeLike($this);
         }
+
+        return $this;
+    }
+
+    public function getRegisterDate(): ?\DateTimeInterface
+    {
+        return $this->register_date;
+    }
+
+    public function setRegisterDate(\DateTimeInterface $register_date): self
+    {
+        $this->register_date = $register_date;
+
+        return $this;
+    }
+
+    public function getAbout(): ?string
+    {
+        return $this->about;
+    }
+
+    public function setAbout(?string $about): self
+    {
+        $this->about = $about;
 
         return $this;
     }
