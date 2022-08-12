@@ -24,14 +24,14 @@
                                 </div>
                                 <div class="box">
                                     <div class="content">
-                                        <p id="like_count">
+                                        <p>
                                             {% if user.likedArticles.count == 0 %}
-                                                0 articles aimés
+                                                <span id="like_count">0</span> articles aimés
                                             {% else %}
                                                 {% if user.likedArticles.count == 1 %}
-                                                    1 article aimé
+                                                    <span id="like_count">1</span> article aimé
                                                 {% else %}
-                                                    {{ user.likedArticles.count }} articles aimés
+                                                    <span id="like_count">{{ user.likedArticles.count }}</span> articles aimés
                                                 {% endif %}
                                             {% endif %}
                                         </p>
