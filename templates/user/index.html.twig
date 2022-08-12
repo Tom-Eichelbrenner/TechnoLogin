@@ -24,23 +24,36 @@
                                 </div>
                                 <div class="box">
                                     <div class="content">
-                                        <p>
-                                            4 posts likés
+                                        <p id="like_count">
+                                            {% if user.likedArticles.count == 0 %}
+                                                0 articles aimés
+                                            {% else %}
+                                                {% if user.likedArticles.count == 1 %}
+                                                    1 article aimé
+                                                {% else %}
+                                                    {{ user.likedArticles.count }} articles aimés
+                                                {% endif %}
+                                            {% endif %}
                                         </p>
-                                        <div class="content">
-                                            <p>
-                                                Post 1
-                                            </p>
-                                            <p>
-                                                Post 1
-                                            </p>
-                                            <p>
-                                                Post 1
-                                            </p>
-                                            <p>
-                                                Post 1
-                                            </p>
-                                        </div>
+                                        <table class="table">
+                                            <tbody>
+                                            {% for article in user.likedArticles %}
+                                                <tr id="row_{{ article.id }}" class="liked_article">
+                                                    <td>{{ article.title }}</td>
+                                                    <td>
+                                                        <a href="{{ path('article_show', {'slug': article.slug}) }}">
+                                                            <i class="fa fa-eye see_liked"></i>
+                                                        </a>
+                                                    </td>
+                                                    {% if user == app.user %}
+                                                        <td>
+                                                            <i class="fa fa-minus-circle remove_like"
+                                                               data-article-id="{{ article.id }}"></i>
+                                                        </td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
                                     </div>
                                 </div>
                             </div>

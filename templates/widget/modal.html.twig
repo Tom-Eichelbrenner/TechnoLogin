@@ -1,0 +1,20 @@
+<div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="modal-title"></p>
+            <button class="delete" aria-label="close" id="modal-close"></button>
+        </header>
+        <section class="modal-card-body">
+            <p id="modal-message"></p>
+        </section>
+        <footer class="modal-card-foot">
+            <a class="button is-info" id="modal-button" href="{{ path('app_login') }}">
+                <span class="icon">
+                    <i class="fas fa-user"></i>
+                </span>
+                <span>Se connecter</span>
+            </a>
+        </footer>
+    </div>
+</div>

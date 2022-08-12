@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\Type\RegistrationFormType;
+use App\Service\ArticleService;
 use App\Service\OptionService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,6 +18,7 @@ class UserController extends AbstractController
 {
     public function __construct(
         private OptionService $optionService,
+        private ArticleService $articleService,
     )
     {
     }
