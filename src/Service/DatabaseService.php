@@ -20,6 +20,7 @@ class DatabaseService
         $application = new Application($this->kernel);
         $application->setAutoExit(false);
 
+
         $input = new ArrayInput([
             'command' => 'd:s:c'
         ]);

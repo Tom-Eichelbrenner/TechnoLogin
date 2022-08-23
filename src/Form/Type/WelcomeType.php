@@ -42,7 +42,7 @@ class WelcomeType extends AbstractType
         ->add('submit', SubmitType::class,[
             'label' => 'Installer',
             'attr' => [
-                'class' => 'button is-link'
+                'class' => 'button is-button'
             ],
         ]);
     }

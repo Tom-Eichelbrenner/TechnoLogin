@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Article;
+use App\Entity\Media;
 use App\Entity\Option;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\DBAL\Types\BooleanType;
@@ -25,5 +27,7 @@ class AppFixtures extends Fixture
             $manager->persist($option);
         }
         $manager->flush();
+
+
     }
 }
