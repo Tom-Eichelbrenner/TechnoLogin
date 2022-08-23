@@ -99,10 +99,6 @@ class App {
                 notification.addClass('is-danger');
                 notification.removeClass('is-success');
                 message.text(json.message);
-                setTimeout(() => {
-                        notification.hide();
-                    }
-                    , 3000);
             }
             if (json.code === 'USERNAME_ALREADY_EXISTS') {
                 spinner.hide();
@@ -110,9 +106,6 @@ class App {
                 notification.addClass('is-danger');
                 notification.removeClass('is-success');
                 message.text(json.message);
-                setTimeout(() => {
-                    notification.hide();
-                }, 3000);
             }
             if (json.code === 'PROFILE_UPDATED_SUCCESSFULLY') {
                 spinner.hide();
@@ -122,12 +115,6 @@ class App {
                 message.text(json.message);
                 username.text('@' + json.username);
                 about.text(json.about);
-
-                setTimeout(() => {
-                        notification.hide();
-                        modal.removeClass('is-active');
-                    }
-                    , 2000);
             }
             if (json.code === 'PROFILE_UPDATE_FAILED') {
                 spinner.hide();
@@ -135,9 +122,6 @@ class App {
                 notification.addClass('is-danger');
                 notification.removeClass('is-success');
                 message.text(json.message);
-                setTimeout(() => {
-                    notification.hide();
-                }, 3000);
             }
         });
     }

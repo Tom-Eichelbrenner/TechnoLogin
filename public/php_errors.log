@@ -100,3 +100,4 @@ Stack trace:
 [23-Aug-2022 09:32:06 Europe/Berlin] 2022-08-23T09:32:06+02:00 [info] User Deprecated: Method "EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface::index()" might add "KeyValueStore|Response" as a native return type declaration in the future. Do the same in implementation "App\Controller\Admin\OptionCrudController" now to avoid errors or add an explicit @return annotation to suppress this message.
 [23-Aug-2022 09:32:06 Europe/Berlin] 2022-08-23T09:32:06+02:00 [critical] Uncaught Exception: An exception occurred in the driver: SQLSTATE[HY000] [2002] Connection refused
 [23-Aug-2022 17:19:07 Europe/Berlin] PHP Fatal error:  Cannot use positional argument after named argument in /home/jel/Projets/TechnoLogin/src/Controller/Admin/DashboardController.php on line 23
+[23-Aug-2022 19:01:34 Europe/Berlin] 2022-08-23T19:01:34+02:00 [critical] Uncaught Error: syntax error, unexpected token "}", expecting ";"

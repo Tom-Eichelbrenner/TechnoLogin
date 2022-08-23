@@ -13,9 +13,11 @@
                                 <p class="card-header-title" id="username">
                                     @{{ user.username }}
                                 </p>
-                                <span class="icon mx-3" id="modify">
+                                {% if app.user == user %}
+                                    <span class="icon mx-3" id="modify">
                                         <i class="fa fa-pencil"></i>
                                     </span>
+                                {% endif %}
                             </div>
                             <div class="card-content content">
                                 <blockquote class="blockquote" id="about">
