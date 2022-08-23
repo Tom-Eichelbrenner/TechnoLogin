@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
+{% block bodyclass %}second{% endblock %}
 {% block body %}
     <div class="hero is-fullheight has-shadow has-black-gradient form form-register">
         <div class="hero-body">
@@ -61,10 +61,11 @@
                                     </div>
                                 </div>
 
-                                <button class="button is-block is-info is-fullwidth is-medium"
+                                <button class="button is-block is-button is-fullwidth"
                                         data-dashlane-rid="27f0e5d90fd4084c" data-form-type=""
                                         data-dashlane-label="true">
-                                    S'inscrire
+                                    Inscription
+                                    <i class="fa fa-user-plus"></i>
                                 </button>
                                 <br>
                                 <small><em>Vous avez déjà un compte ? <a

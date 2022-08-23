@@ -97,3 +97,5 @@ Stack trace:
 [08-Aug-2022 14:18:22 Europe/Berlin] 2022-08-08T14:18:22+02:00 [critical] Uncaught Error: Unclosed '{' on line 22
 [08-Aug-2022 14:35:33 Europe/Berlin] 2022-08-08T14:35:33+02:00 [critical] Uncaught Error: syntax error, unexpected token "public"
 [11-Aug-2022 18:03:11 Europe/Berlin] 2022-08-11T18:03:11+02:00 [critical] Uncaught Error: Unclosed '(' does not match ']'
+[23-Aug-2022 09:32:06 Europe/Berlin] 2022-08-23T09:32:06+02:00 [info] User Deprecated: Method "EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface::index()" might add "KeyValueStore|Response" as a native return type declaration in the future. Do the same in implementation "App\Controller\Admin\OptionCrudController" now to avoid errors or add an explicit @return annotation to suppress this message.
+[23-Aug-2022 09:32:06 Europe/Berlin] 2022-08-23T09:32:06+02:00 [critical] Uncaught Exception: An exception occurred in the driver: SQLSTATE[HY000] [2002] Connection refused

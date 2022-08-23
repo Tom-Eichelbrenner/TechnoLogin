@@ -29,26 +29,40 @@ $red: hsl(4, 88%, 32%);
 $font_title: 'Indie Flower', serif;
 $font_body: 'Raleway', sans-serif;
 
-$text-color-1: #1B2E55;
+$background: #004643;
+$headline: #fffffe;
+$paragraph: #abd1c6;
+$button: #f9bc60;
+$button-text: #001e1d;
+$custom-colors: ("button": ($button, $button-text));
 
-$box-color: #EBEBEB;
-$text-color: #001011;
-$heading-color: #157A75;
-$pre-color: #672358;
 
-$body_background-color: $white;
+$article-background: #abd1c6;
+$article-headline: #001e1d;
+$article-sub-headline: #0f3433;
+$article-card-background: #004643;
+$article-card-headline: #fffffe;
+$article-card-paragraph: #abd1c6;
+
+$title-color: $headline;
+p {
+  color: $paragraph;
+}
+
+$navbar-background-color: $background;
+$navbar-dropdown-item-hover-background-color: transparent;
+
+
 @import "bulma";
+
 .has_font_title {
   font-family: $font_title;
-  color: #109501;
+
 }
 
 body {
   font-family: $font_body;
-}
-
-h1, h2, h3, h4, h5 {
-  color: $heading-color;
+  background-color: $background;
 }
 
 article.content {
@@ -105,28 +119,96 @@ article.content {
 }
 
 .post-single {
-  background-color: $box-color;
+  //background-color: $box-color;
 }
 
-.content {
-  color: $text-color;
+.second {
+  background-color: $article-background !important;
 
-  pre {
-    background-color: $white;
-    color: $pre-color;
+  h1 {
+    color: $article-headline !important;
+  }
+
+  .box {
+    background-color: $article-card-background !important;
+
+    h1 {
+      color: $article-card-headline !important;
+    }
+
+    .content {
+      color: $article-card-paragraph !important;
+
+      pre {
+        background-color: $article-background !important;
+        color: $article-card-background !important;
+      }
+
+      blockquote {
+        background-color: $article-background !important;
+        color: $article-card-background !important;
+      }
+    }
+
+    .comment {
+      .card {
+        background-color: $article-card-background !important;
+        color: $article-card-paragraph !important;
+
+        .content {
+          h5 {
+            a{
+                color: $article-card-headline !important;
+            }
+            small{
+                color: $article-card-paragraph !important;
+            }
+          }
+
+          p {
+            color: $article-card-paragraph !important;
+          }
+        }
+      }
+    }
+
+  }
+
+  .navbar, .navbar-item, .navbar-link {
+    color: $article-sub-headline !important;
+  }
+
+  .footer {
+    .content {
+      p {
+        color: $article-headline !important;
+      }
+    }
+  }
+}
+
+.footer {
+  .content {
+    p {
+      color: $article-card-paragraph !important;
+    }
   }
 }
 
 .navbar, .navbar-item, .navbar-link {
-  color: $text-color;
+  color: $paragraph;
 }
 
 
 .form-box {
-  background-color: $box-color;
+  background-color: $article-card-background !important;
 
   p, small {
-    color: $text-color;
+    color: $article-card-paragraph !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $article-card-headline !important;
   }
 }
 

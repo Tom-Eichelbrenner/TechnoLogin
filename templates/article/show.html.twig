@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ article.title }}{% endblock %}
+{% block bodyclass %}second{% endblock %}
 
 {% block body %}
     <section class="article-hero hero is-small py-5">
         <div class="hero-body">
             <div class="container has-text-centered">
-                <h1 class="has_font_title title" style="font-size: 3rem">
+                <h1 class="title" style="font-size: 3rem">
                     {{ article.title }}
                 </h1>
             </div>
         </div>
     </section>
-    <hr>
     <div class="mx-5 mt-5">
         <div class="container post-single p-5 box">
             <article class="content" id="{{ article.id }}">

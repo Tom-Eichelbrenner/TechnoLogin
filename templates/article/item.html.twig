@@ -21,7 +21,7 @@
             {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
         </p>
         <br>
-        <a href="{{ path('article_show', {'slug':article.slug}) }}" class="button is-primary">
+        <a href="{{ path('article_show', {'slug':article.slug}) }}" class="button is-button">
             Lire la suite
         </a>
     </div>

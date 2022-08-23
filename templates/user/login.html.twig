@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
-
+{% block bodyclass %}second{% endblock %}
 {% block body %}
     <div class="hero is-fullheight form form-login">
         <div class="hero-body">
@@ -52,7 +52,7 @@
                                     <input type="hidden" name="_csrf_token"
                                            value="{{ csrf_token('authenticate') }}"
                                     >
-                                    <button class="button is-block is-info  is-fullwidth mt-5">
+                                    <button class="button is-block is-button  is-fullwidth mt-5">
                                         Connexion
                                         <i class="fa fa-sign-in" aria-hidden="true"></i>
                                     </button>

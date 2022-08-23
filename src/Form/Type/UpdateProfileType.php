@@ -34,7 +34,7 @@ class UpdateProfileType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Mettre à jour',
                 'attr' => [
-                    'class' => 'button is-primary',
+                    'class' => 'button is-button',
                 ],
             ]);
         ;
