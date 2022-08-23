@@ -42,7 +42,9 @@ class HomeController extends AbstractController
                             OptionService               $optionService
     ): Response
     {
-
+        if ($optionService->getValue(WelcomeModel::SITE_INSTALLED_NAME)) {
+            return $this->redirectToRoute('app_home');
+        }
 
         $welcomeForm = $this->createForm(WelcomeType::class, new WelcomeModel());
 

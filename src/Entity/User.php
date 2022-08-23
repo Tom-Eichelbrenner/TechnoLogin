@@ -49,6 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->username = $username;
         $this->comment = new ArrayCollection();
         $this->liked_articles = new ArrayCollection();
+        $this->register_date = new \DateTime('now');
     }
 
 
