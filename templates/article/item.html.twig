@@ -1,30 +1,34 @@
 {% if article %}
-<article class="columns is-multiline">
-    <div class="column is-12 post-img">
-        <figure>
-            <img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}">
-        </figure>
-    </div>
-    <div class="column is-12 featured-content">
-        <h3 class="post-category">
-            {% for category in article.categories %}
-                {% if loop.first %}
-                    <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
+    <article class="columns is-multiline">
+        <div class="column is-12 post-img">
+            <figure>
+                {% if article.featuredImage %}
+                    <img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}">
                 {% else %}
-                    - <a href="{{path('category_show', {'slug': category.slug})}}">{{ category.name }}</a>
+                    <img src="/uploads/blogging.png" alt="No image">
                 {% endif %}
-            {% endfor %}
-        </h3>
-        <h1 class="title post-title font-1 article_title_color">
-            {{ article.title }}
-        </h1>
-        <p class="post-excerpt">
-            {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
-        </p>
-        <br>
-        <a href="{{ path('article_show', {'slug':article.slug}) }}" class="button is-button">
-            Lire la suite
-        </a>
-    </div>
-</article>
+            </figure>
+        </div>
+        <div class="column is-12 featured-content">
+            <h3 class="post-category">
+                {% for category in article.categories %}
+                    {% if loop.first %}
+                        <a href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.name }}</a>
+                    {% else %}
+                        - <a href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.name }}</a>
+                    {% endif %}
+                {% endfor %}
+            </h3>
+            <h1 class="title post-title font-1 article_title_color">
+                {{ article.title }}
+            </h1>
+            <p class="post-excerpt">
+                {{ article.featuredText ?: article.content|striptags|slice(0, 130) ~ '...' }}
+            </p>
+            <br>
+            <a href="{{ path('article_show', {'slug':article.slug}) }}" class="button is-button">
+                Lire la suite
+            </a>
+        </div>
+    </article>
 {% endif %}

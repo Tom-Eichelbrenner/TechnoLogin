@@ -44,12 +44,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $about = null;
 
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
+    private Collection $wrote_articles;
+
     public function __construct(?string $username = null)
     {
         $this->username = $username;
         $this->comment = new ArrayCollection();
         $this->liked_articles = new ArrayCollection();
         $this->register_date = new \DateTime('now');
+        $this->wrote_articles = new ArrayCollection();
     }
 
 
@@ -207,5 +211,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString(): string
     {
         return $this->username;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getWroteArticles(): Collection
+    {
+        return $this->wrote_articles;
+    }
+
+    public function addWroteArticle(Article $wroteArticle): self
+    {
+        if (!$this->wrote_articles->contains($wroteArticle)) {
+            $this->wrote_articles->add($wroteArticle);
+            $wroteArticle->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWroteArticle(Article $wroteArticle): self
+    {
+        if ($this->wrote_articles->removeElement($wroteArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($wroteArticle->getAuthor() === $this) {
+                $wroteArticle->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }

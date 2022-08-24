@@ -50,6 +50,9 @@ class Article implements TimeStampedInterface
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'liked_articles')]
     private Collection $likes;
 
+    #[ORM\ManyToOne(inversedBy: 'wrote_articles')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -240,6 +243,18 @@ class Article implements TimeStampedInterface
     public function removeLike(User $like): self
     {
         $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

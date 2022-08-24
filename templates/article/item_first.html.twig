@@ -2,7 +2,11 @@
 <article class="columns featured">
     <div class="column is-7 post-img">
         <figure>
-            <img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}">
+            {% if article.featuredImage %}
+                <img src="/uploads/{{ article.featuredImage.filename }}" alt="{{ article.featuredImage.altText }}">
+            {% else %}
+                <img src="/uploads/blogging.png" alt="No image">
+            {% endif %}
         </figure>
     </div>
     <div class="column is-5 featured-content va">

@@ -42,7 +42,8 @@ class ArticleCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield BooleanField::new('is_featured')->setLabel('Featured');
+        yield BooleanField::new('is_featured')->setLabel('Featured')
+            ->setPermission('ROLE_ADMIN');
         yield TextField::new('title', 'Titre')
             ->setRequired(true)
             ->setHelp('Le titre de l\'article.');
@@ -68,12 +69,14 @@ class ArticleCrudController extends AbstractCrudController
 
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
-        $qb = $this->articleRepository->createQueryBuilder('a');
-        if ($this->isGranted('ROLE_AUTHOR')) {
-            $qb->andWhere('a.author = :author')
+        // if actual user is an admin
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->articleRepository->createQueryBuilder('a');
+        } else {
+            return $this->articleRepository->createQueryBuilder('a')
+                ->where('a.author = :author')
                 ->setParameter('author', $this->getUser());
         }
-        return $qb;
     }
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
