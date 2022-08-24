@@ -53,11 +53,15 @@ class Article implements TimeStampedInterface
     #[ORM\ManyToOne(inversedBy: 'wrote_articles')]
     private ?User $author = null;
 
+    #[ORM\Column]
+    private ?bool $is_draft = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->setIsDraft(true);
     }
 
     public function getId(): ?int
@@ -255,6 +259,18 @@ class Article implements TimeStampedInterface
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function isIsDraft(): ?bool
+    {
+        return $this->is_draft;
+    }
+
+    public function setIsDraft(bool $is_draft): self
+    {
+        $this->is_draft = $is_draft;
 
         return $this;
     }

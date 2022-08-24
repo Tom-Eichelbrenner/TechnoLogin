@@ -33,7 +33,8 @@ class ArticleRepository extends ServiceEntityRepository
                 ->setParameter('categoryId', $category->getId());
         }
         $query->andWhere($query->expr()->eq('a.is_featured', ':is_featured'))
-            ->setParameter('is_featured', false);
+            ->setParameter('is_featured', false)
+            ->andWhere('a.is_draft = false');
 
         return $query->getQuery();
     }
