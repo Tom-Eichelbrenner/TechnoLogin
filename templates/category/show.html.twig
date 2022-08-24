@@ -3,11 +3,23 @@
 {% block title %}{{ category.name }}{% endblock %}
 
 {% block body %}
+    <section class="hero is-medium main">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 id="blog_title" class="has_font_title blog_title title tracking-in-expand-forward-bottom" style="font-size: 6rem; color: {{ category.color }}">
+                    {{ category.name }}
+                </h1>
+                <h2 class="subtitle mt-2">
+                    {% if category.description %}
+                        {{ category.description }}
+                    {% endif %}
+                </h2>
+            </div>
+        </div>
+    </section>
     <main class="container">
         <div class="columns g-5 px-3">
             <div class="column">
-                <h3 class="title is-3 pb-4 mb-4 is-italic"
-                    style="border-bottom: 1px solid #e39e9e">{{ category.name }}</h3>
                 <div id="article-list">
                     {% include 'article/list.html.twig' with {articles} %}
                 </div>

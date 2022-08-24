@@ -101,3 +101,5 @@ Stack trace:
 [23-Aug-2022 09:32:06 Europe/Berlin] 2022-08-23T09:32:06+02:00 [critical] Uncaught Exception: An exception occurred in the driver: SQLSTATE[HY000] [2002] Connection refused
 [23-Aug-2022 17:19:07 Europe/Berlin] PHP Fatal error:  Cannot use positional argument after named argument in /home/jel/Projets/TechnoLogin/src/Controller/Admin/DashboardController.php on line 23
 [23-Aug-2022 19:01:34 Europe/Berlin] 2022-08-23T19:01:34+02:00 [critical] Uncaught Error: syntax error, unexpected token "}", expecting ";"
+[24-Aug-2022 10:10:00 Europe/Berlin] 2022-08-24T10:10:00+02:00 [critical] Uncaught Error: syntax error, unexpected token "}", expecting ";"
+[24-Aug-2022 10:13:48 Europe/Berlin] 2022-08-24T10:13:48+02:00 [critical] Uncaught Error: syntax error, unexpected token "yield"

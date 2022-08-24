@@ -22,6 +22,9 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
+    #[ORM\OneToOne(inversedBy: 'uploaded_medias', cascade: ['persist', 'remove'])]
+    private ?User $uploaded_by = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,5 +69,17 @@ class Media
     public function __toString(): string
     {
         return $this->name ?? '';
+    }
+
+    public function getUploadedBy(): ?User
+    {
+        return $this->uploaded_by;
+    }
+
+    public function setUploadedBy(?User $uploaded_by): self
+    {
+        $this->uploaded_by = $uploaded_by;
+
+        return $this;
     }
 }

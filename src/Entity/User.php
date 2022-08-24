@@ -47,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private Collection $wrote_articles;
 
+    #[ORM\OneToOne(mappedBy: 'uploaded_by', cascade: ['persist', 'remove'])]
+    private ?Media $uploaded_medias = null;
+
     public function __construct(?string $username = null)
     {
         $this->username = $username;
@@ -239,6 +242,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $wroteArticle->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUploadedMedias(): ?Media
+    {
+        return $this->uploaded_medias;
+    }
+
+    public function setUploadedMedias(?Media $uploaded_medias): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($uploaded_medias === null && $this->uploaded_medias !== null) {
+            $this->uploaded_medias->setUploadedBy(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($uploaded_medias !== null && $uploaded_medias->getUploadedBy() !== $this) {
+            $uploaded_medias->setUploadedBy($this);
+        }
+
+        $this->uploaded_medias = $uploaded_medias;
 
         return $this;
     }

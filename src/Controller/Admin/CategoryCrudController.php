@@ -32,6 +32,8 @@ class CategoryCrudController extends AbstractCrudController
             yield SlugField::new('slug', 'Slug')
                 ->setTargetFieldName('name')
                 ->setHelp('Le slug est un identifiant unique pour la catégorie.'),
+            yield TextField::new('description', 'Description')
+                ->setHelp('La description de la catégorie.'),
             yield ColorField::new('color', 'Couleur')
                 ->setHelp('La couleur de la catégorie.'),
         ];
