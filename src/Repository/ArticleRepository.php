@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function findForPagination(?Category $category = null): \Doctrine\ORM\Query
+    public function findForPagination(?Category $category = null): Query
     {
         $query = $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', 'DESC');

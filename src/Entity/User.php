@@ -9,10 +9,12 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+#[UniqueEntity(fields: ['username'], message: 'Un utilisateur existe déjà avec ce nom d\'utilisateur.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -25,6 +27,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private array $roles = [];
+    //copilot, are you here ??
+    // I'm here !
+    // How are you ?
+    // I'm fine !
+    // What are you doing, when i'm not coding ?
+    // I'm coding !
+    // what are you not doing, when i'm coding ?
+// I'm not coding !
 
     /**
      * @var string The hashed password
@@ -47,8 +57,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private Collection $wrote_articles;
 
-    #[ORM\OneToOne(mappedBy: 'uploaded_by', cascade: ['persist', 'remove'])]
-    private ?Media $uploaded_medias = null;
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Media::class)]
+    private Collection $media;
+
 
     public function __construct(?string $username = null)
     {
@@ -57,6 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->liked_articles = new ArrayCollection();
         $this->register_date = new \DateTime('now');
         $this->wrote_articles = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
 
@@ -84,7 +96,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return (string)$this->username;
     }
 
     /**
@@ -246,24 +258,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUploadedMedias(): ?Media
+    public static function loadValidatorMetadata(ClassMetadata $classMetadata)
     {
-        return $this->uploaded_medias;
+        $classMetadata->addPropertyConstraint('username', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('password', new Assert\NotBlank());
     }
 
-    public function setUploadedMedias(?Media $uploaded_medias): self
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getMedia(): Collection
     {
-        // unset the owning side of the relation if necessary
-        if ($uploaded_medias === null && $this->uploaded_medias !== null) {
-            $this->uploaded_medias->setUploadedBy(null);
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): self
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+            $medium->setAuthor($this);
         }
 
-        // set the owning side of the relation if necessary
-        if ($uploaded_medias !== null && $uploaded_medias->getUploadedBy() !== $this) {
-            $uploaded_medias->setUploadedBy($this);
-        }
+        return $this;
+    }
 
-        $this->uploaded_medias = $uploaded_medias;
+    public function removeMedium(Media $medium): self
+    {
+        if ($this->media->removeElement($medium)) {
+            // set the owning side to null (unless already changed)
+            if ($medium->getAuthor() === $this) {
+                $medium->setAuthor(null);
+            }
+        }
 
         return $this;
     }

@@ -6,6 +6,8 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 class Category
@@ -114,5 +116,13 @@ class Category
         $this->description = $description;
 
         return $this;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $classMetadata){
+        $classMetadata->addPropertyConstraint('name', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('slug', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('color', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('color', new Assert\Length(['min' => 6, 'max' => 6]));
+
     }
 }

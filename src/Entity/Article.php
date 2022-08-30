@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article implements TimeStampedInterface
@@ -273,5 +275,16 @@ class Article implements TimeStampedInterface
         $this->is_draft = $is_draft;
 
         return $this;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $classMetadata){
+        $classMetadata->addPropertyConstraint('title', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('title', new Assert\Length(['min' => 5, 'max' => 255]));
+        $classMetadata->addPropertyConstraint('slug', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('slug', new Assert\Length(['min' => 5, 'max' => 255]));
+        $classMetadata->addPropertyConstraint('content', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('featuredText', new Assert\Length(['min' => 5, 'max' => 255]));
+        $classMetadata->addPropertyConstraint('is_featured', new Assert\Type('bool'));
+        $classMetadata->addPropertyConstraint('is_draft', new Assert\Type('bool'));
     }
 }

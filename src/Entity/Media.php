@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 class Media
@@ -22,8 +24,9 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
-    #[ORM\OneToOne(inversedBy: 'uploaded_medias', cascade: ['persist', 'remove'])]
-    private ?User $uploaded_by = null;
+    #[ORM\ManyToOne(inversedBy: 'media')]
+    private ?User $author = null;
+
 
     public function getId(): ?int
     {
@@ -71,15 +74,21 @@ class Media
         return $this->name ?? '';
     }
 
-    public function getUploadedBy(): ?User
+    public function getAuthor(): ?User
     {
-        return $this->uploaded_by;
+        return $this->author;
     }
 
-    public function setUploadedBy(?User $uploaded_by): self
+    public function setAuthor(?User $author): self
     {
-        $this->uploaded_by = $uploaded_by;
+        $this->author = $author;
 
         return $this;
+    }
+    public static function loadValidatorMetadata(ClassMetadata $classMetadata){
+        $classMetadata->addPropertyConstraint('name', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('name', new Assert\Length(['min' => 3, 'max' => 255]));
+        $classMetadata->addPropertyConstraint('altText', new Assert\NotBlank());
+        $classMetadata->addPropertyConstraint('altText', new Assert\Length(['min' => 3, 'max' => 255]));
     }
 }

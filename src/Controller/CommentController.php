@@ -19,12 +19,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     #[Route('/ajax/comments', name: 'comment_add')]
-    public function add(Request $request, ArticleRepository $articleRepository, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    public function add(Request $request, ArticleRepository $articleRepository, EntityManagerInterface $entityManager): Response
     {
         $commentData = $request->request->all('comment');
         if (!$this->isCsrfTokenValid('comment_add', $commentData['_token'])) {
             return $this->json([
                 'code' => 'INVALID_TOKEN',
+                'message' => 'Formulaire invalide',
             ], Response::HTTP_FORBIDDEN);
         }
 
@@ -33,6 +34,7 @@ class CommentController extends AbstractController
         if (!$article) {
             return $this->json([
                 'code' => 'ARTICLE_NOT_FOUND',
+                'message' => 'Cet article n\'existe pas, veuillez rafraichir la page et réessayer.',
             ], Response::HTTP_NOT_FOUND);
         }
 
@@ -41,6 +43,7 @@ class CommentController extends AbstractController
         if (!$user) {
             return $this->json([
                 'code' => 'USER_NOT_AUTHENTICATED_FULLY',
+                'message' => 'Vous devez être connecté pour pouvoir poster un commentaire.',
             ], Response::HTTP_UNAUTHORIZED);
         }
 

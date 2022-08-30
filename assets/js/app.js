@@ -16,8 +16,30 @@ class App {
         this.handleProfileForm();
     }
 
+    triggerModal(title, message, linkToLogin = false) {
+        let modal = $('#modal');
+        let modalTitle = $('#modal-title');
+        let modalMessage = $('#modal-message');
+        let modalClose = $('#modal-close');
+        let modalButton = $('#modal-button');
+        modalTitle.text(title);
+        modalMessage.text(message);
+        if (linkToLogin) {
+            modalButton.show();
+        } else {
+            modalButton.hide();
+        }
+        modal.toggleClass('is-active');
+        modalClose.on('click', () => {
+                modal.removeClass('is-active');
+            }
+        );
+    }
+
+
     handleCommentForm() {
         const commentForm = $('formcomment-form');
+
         if (null === commentForm) {
             return;
         }
@@ -43,6 +65,8 @@ class App {
                 commentList.insertAdjacentHTML('afterbegin', json.html); //todo its not working
                 commentCount.innerText = json.numberOfComments + " ";
                 commentContent.value = '';
+            } else {
+                this.triggerModal('Erreur', json.message);
             }
         });
     }

@@ -103,3 +103,6 @@ Stack trace:
 [23-Aug-2022 19:01:34 Europe/Berlin] 2022-08-23T19:01:34+02:00 [critical] Uncaught Error: syntax error, unexpected token "}", expecting ";"
 [24-Aug-2022 10:10:00 Europe/Berlin] 2022-08-24T10:10:00+02:00 [critical] Uncaught Error: syntax error, unexpected token "}", expecting ";"
 [24-Aug-2022 10:13:48 Europe/Berlin] 2022-08-24T10:13:48+02:00 [critical] Uncaught Error: syntax error, unexpected token "yield"
+[25-Aug-2022 17:49:03 Europe/Berlin] 2022-08-25T17:49:03+02:00 [info] User Deprecated: Method "EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface::index()" might add "KeyValueStore|Response" as a native return type declaration in the future. Do the same in implementation "App\Controller\Admin\OptionCrudController" now to avoid errors or add an explicit @return annotation to suppress this message.
+[25-Aug-2022 17:49:03 Europe/Berlin] 2022-08-25T17:49:03+02:00 [critical] Uncaught Exception: An exception occurred in the driver: SQLSTATE[HY000] [2002] Connection refused
+[26-Aug-2022 15:28:58 Europe/Berlin] 2022-08-26T15:28:58+02:00 [critical] Uncaught Error: syntax error, unexpected token "if"

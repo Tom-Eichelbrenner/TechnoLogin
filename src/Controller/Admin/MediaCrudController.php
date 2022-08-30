@@ -53,7 +53,7 @@ class MediaCrudController extends AbstractCrudController
             $imageField->setRequired(false);
         }
 
-        yield TextField::new('uploadedBy', 'Uploadé par')
+        yield TextField::new('author', 'Uploadé par')
             ->setHelp('L\'utilisateur qui a uploadé le média.')
             ->onlyOnIndex();
 
@@ -84,8 +84,7 @@ class MediaCrudController extends AbstractCrudController
         /** @var User $user */
         $user = $this->getUser();
         /** @var Media $entityInstance */
-        $entityInstance->setUploadedBy($user);
-        $entityInstance->setName($user->getUsername() . '_' . $entityInstance->getName());
+        $entityInstance->setAuthor($user);
         parent::persistEntity($entityManager, $entityInstance);
     }
 }
