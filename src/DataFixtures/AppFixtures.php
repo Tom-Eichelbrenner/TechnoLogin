@@ -27,7 +27,5 @@ class AppFixtures extends Fixture
             $manager->persist($option);
         }
         $manager->flush();
-
-
     }
 }

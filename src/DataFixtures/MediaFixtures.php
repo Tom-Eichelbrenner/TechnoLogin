@@ -24,7 +24,6 @@ class MediaFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            ArticleFixtures::class,
             UserFixtures::class
         ];
     }

@@ -17,7 +17,7 @@ class ArticleFixtures extends Fixture implements DependentFixtureInterface
         $article->setTitle('Bienvenue sur le blog');
         $article->setSlug('bienvenue-sur-le-blog');
         $article->setContent('<h1>Bienvenue</h1><p>Pour modifier le contenu de cette page, allez dans l\'administration du site, située en haut a gauche de la page une fois connecté.</p>');
-        $article->setFeaturedText('<h1>Bienvenue</h1><p>Pour modifier le contenu de cette page, allez dans l\'administration du site, située en haut a gauche de la page une fois connecté.</p>');
+        $article->setFeaturedText('Bienvenue Pour modifier le contenu de cette page, allez dans l\'administration du site, située en haut a gauche de la page une fois connecté.');
         $article->setFeaturedImage($this->getReference('media1'));
         $article->setCreatedAt(new \DateTime());
         $article->setUpdatedAt(new \DateTime());

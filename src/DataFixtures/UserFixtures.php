@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class UserFixtures extends Fixture implements DependentFixtureInterface
+class UserFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -24,8 +24,4 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference('user1', $user);
     }
 
-    public function getDependencies()
-    {
-        // TODO: Implement getDependencies() method.
-    }
 }
