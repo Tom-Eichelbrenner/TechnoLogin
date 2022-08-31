@@ -23,23 +23,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 3,
+        max: 180,
+        minMessage: 'Le nom d\'utilisateur doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Le nom d\'utilisateur doit faire au maximum {{ limit }} caractères.',
+    )]
     private ?string $username = null;
 
     #[ORM\Column]
     private array $roles = [];
-    //copilot, are you here ??
-    // I'm here !
-    // How are you ?
-    // I'm fine !
-    // What are you doing, when i'm not coding ?
-    // I'm coding !
-    // what are you not doing, when i'm coding ?
-// I'm not coding !
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Length(
+        min: 6,
+        max: 4096,
+        minMessage: 'Le mot de passe doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Le mot de passe ne doit pas faire plus de {{ limit }} caractères.',
+    )]
     private ?string $password = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
@@ -52,6 +57,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $register_date = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Length(
+        min: 1,
+        max: 4096,
+        minMessage: 'Le nom doit faire au moins {{ limit }} caractères.',
+        maxMessage: 'Le nom ne doit pas faire plus de {{ limit }} caractères.',
+    )]
     private ?string $about = null;
 
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]

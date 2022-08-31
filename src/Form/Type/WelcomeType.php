@@ -51,6 +51,7 @@ class WelcomeType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => WelcomeModel::class,
+            'csrf_token_id' => 'welcome',
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\EventSubscriber;
 
 use App\Service\DatabaseService;
 use Doctrine\DBAL\ConnectionException;
+use Doctrine\DBAL\Exception\DatabaseObjectNotFoundException;
 use Doctrine\DBAL\Exception\TableNotFoundException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -22,7 +23,7 @@ class ExceptionListener
     {
         $exception = $event->getThrowable();
 
-        if ($exception instanceof ConnectionException || $exception instanceof TableNotFoundException) {
+        if ($exception instanceof ConnectionException || $exception instanceof TableNotFoundException || $exception instanceof \PDOException) {
             $this->databaseService->createDatabase();
             $response = new RedirectResponse($this->router->generate('app_welcome'));
             $event->setResponse($response);

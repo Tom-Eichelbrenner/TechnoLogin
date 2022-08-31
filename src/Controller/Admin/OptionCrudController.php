@@ -43,7 +43,7 @@ class OptionCrudController extends AbstractCrudController
         return $this->optionRepository->getIndexQueryBuilder();
     }
 
-    public function index(AdminContext $context)
+    public function index(AdminContext $context): KeyValueStore|Response
     {
         $response = parent::index($context);
 

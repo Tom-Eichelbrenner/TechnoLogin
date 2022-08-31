@@ -38,17 +38,26 @@
                             <div class="control">
                                 {{ form_widget(welcomeForm.siteName) }}
                             </div>
+                            <div class="form-error">
+                                {{ form_errors(welcomeForm.siteName) }}
+                            </div>
                         </div>
                         <div class="field">
                             {{ form_label(welcomeForm.username) }}
                             <div class="control">
                                 {{ form_widget(welcomeForm.username) }}
                             </div>
+                            <div class="form-error">
+                                {{ form_errors(welcomeForm.username) }}
+                            </div>
                         </div>
                         <div class="field">
                             {{ form_label(welcomeForm.password) }}
                             <div class="control">
                                 {{ form_widget(welcomeForm.password) }}
+                            </div>
+                            <div class="form-error">
+                                {{ form_errors(welcomeForm.password) }}
                             </div>
                         </div>
                         <div class="field">

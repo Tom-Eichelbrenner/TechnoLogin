@@ -18,7 +18,7 @@ class AppExtension extends AbstractExtension
     {
     }
 
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new \Twig\TwigFilter('menuLink', [$this, 'menuLink']),

@@ -2,10 +2,17 @@
 
 namespace App\Model;
 
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
+
 class WelcomeModel
 {
+    #[Length(min: 3, max: 50)]
     private ?string $siteName = null;
+    #[Length(min: 3, max: 50)]
     private ?string $userName = null;
+
+    #[Regex(pattern:"^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$^", message:"Votre mot de passe doit contenir au moins 8 caractères et contenir au moins un chiffre et une lettre majuscule")]
     private ?string $password = null;
 
     const SITE_TITLE_LABEL = 'Titre du site';

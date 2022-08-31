@@ -22,6 +22,11 @@ class DatabaseService
 
 
         $input = new ArrayInput([
+            'command' => 'doctrine:database:create',
+        ]);
+        $this->run($application, $input);
+
+        $input = new ArrayInput([
             'command' => 'd:s:c'
         ]);
 
